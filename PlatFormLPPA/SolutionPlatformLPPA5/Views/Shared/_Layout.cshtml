@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/styles.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="center">
+            <div id="logo">
+                <span id="brand">
+                    <strong>Tienda</strong>EquipoLPPA5
+                </span>
+            </div>
+
+            <nav id="menu">
+                <ul>
+                    <li>
+                        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { })
+
+                    </li>
+                    <li>
+                        <a href="Blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="Formulario.html">Formulario</a>
+                    </li>
+                    <li>
+                        <a href="Pagina1.html">Página 1</a>
+                    </li>
+                    <li>
+                        <a href="Pagina2.html">Página 2</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="clearfix"></div>
+    <div id="slider" class="slider-big">
+        <h1>Bienvenido a la tienda LPPA 5</h1>
+        <a href="Blog.html" class="btn-white">Ir al Blog</a>
+    </div>
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer id="footer">
+        <div class="center">
+            <p>&copy; JayBit Software</p>
+        </div>
+    </footer>
+</div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
