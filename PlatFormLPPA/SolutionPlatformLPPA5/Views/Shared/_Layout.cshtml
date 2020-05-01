@@ -17,30 +17,32 @@
     <header id="header">
         <div class="center">
             <div id="logo">
-                <span id="brand">
-                    <strong id="dest">Tienda</strong>EquipoLPPA5
-                </span>
+                <img src="~/Content/Images/logo.png" />
+                @*<span id="brand">
+                        <strong id="dest">Tienda</strong>EquipoLPPA5
+                    </span>*@
             </div>
 
             <nav id="menu">
                 <ul>
                     <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
 
                     </li>
                     <li>
-                        <a href="Blog.html">Pagina 1</a>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
-                        <a href="Formulario.html">Pagina 22 </a>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
-                        <a href="Pagina1.html">Página 1</a>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
-                        <a href="Pagina2.html">Página 2</a>
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
                     </li>
                 </ul>
+                <span class="nav-indicator"></span>
             </nav>
         </div>
     </header>
@@ -76,6 +78,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <div class="clearfix"></div>
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -99,6 +102,7 @@
         <hr />
 
     </div>
+    <div class="clearfix"></div>
     <footer id="footer">
         <div class="center">
             <p>&copy; UAI Software</p>
