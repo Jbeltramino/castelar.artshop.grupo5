@@ -79,21 +79,7 @@ header {
     transition: 400ms all;
 }
 
-/*#menu a:hover {
-    color: #881430;
-}*/
 
-
-/*.nav {
-    display: inline-flex;
-    position: relative;
-    overflow: hidden;
-    max-width: 100%;
-    background-color: #fff;
-    padding: 0 20px;
-    border-radius: 40px;
-    box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
-}*/
 
 .nav-item {
     color: #83818c;
@@ -150,29 +136,6 @@ header {
 }
 
 
-.btn-white {
-    display: block;
-    background: white;
-    color: rgb(88, 88, 88);
-    padding: 10px;
-    width: 150px;
-    height: 35px;
-    margin: 0px auto;
-    font-size: 18px;
-    text-transform: uppercase;
-    text-shadow: none;
-    text-decoration: none;
-    line-height: 35px;
-    box-shadow: 0px 0px 5px #444;
-    margin-top: 40px !important;
-    border-radius: 4px;
-    transition: 300ms all;
-}
-
-    .btn-white:hover {
-        background-color: #444;
-        color: white;
-    }
 
 
 
@@ -184,28 +147,6 @@ header {
     margin-right: 20px;
 }
 
-.btn {
-    display: block;
-    background: black;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
-    text-decoration: none;
-    max-width: 120px;
-    transition: 300ms all;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-success {
-    background: rgb(23,150,19);
-}
-
-    .btn-success:hover {
-        background: black;
-    }
 
 .mid-form {
     width: 50%;
@@ -274,7 +215,7 @@ textarea {
 /*RESPONSIVE*/
 @media(max-width:1500px) {
     .center {
-        width: 85%;
+        width: 90%;
     }
 }
 
