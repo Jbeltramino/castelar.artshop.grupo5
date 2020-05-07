@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SolutionPlatformLPPA5.Models
 {
-    public class prueba
+    public class Prueba
     {
     }
 }
