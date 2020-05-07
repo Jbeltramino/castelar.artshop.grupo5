@@ -30,7 +30,7 @@
 
                     </li>
                     <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
+                        @Html.ActionLink("Blog", "Index", "Blog", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
                         @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
@@ -100,6 +100,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        <input type="text" id="txt" />
+        <input id="btn" type="button" onclick="pepe();" />
 
     </div>
     <div class="clearfix"></div>
