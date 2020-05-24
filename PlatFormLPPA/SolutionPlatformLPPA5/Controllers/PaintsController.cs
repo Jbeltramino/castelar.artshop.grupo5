@@ -13,5 +13,9 @@ namespace SolutionPlatformLPPA5.Controllers
         {
             return View();
         }
+        public ActionResult itemPaint()
+        {
+            return View();
+        }
     }
 }

@@ -138,6 +138,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Paints\Index.cshtml" />
+    <Content Include="Views\Paints\itemPaint.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

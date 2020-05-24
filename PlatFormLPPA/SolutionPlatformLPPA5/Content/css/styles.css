@@ -7,7 +7,7 @@
 }
 
 header {
-    height: 120px;
+    height: 125px;
     width: 100%;
     background: white;
     border-bottom: 1px solid #ccc;
@@ -41,7 +41,6 @@ header {
         float: left;
         height: 60px;
         margin-top: -8px;
-        animation: girar infinite 30s linear;
     }
 
 #dest {
@@ -56,25 +55,25 @@ header {
     font-size: 18px;
 }
 
-    #menu ul {
-        line-height: 104px;
-        width: 80%;
-        float: right;
-    }
+#menu ul {
+    line-height: 109px;
+    width: 80%;
+    float: right;
+}
 
-        #menu ul li {
-            display: inline-block;
-            list-style-type: none;
-            height: 46px;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
+#menu ul li {
+    display: inline-block;
+    list-style-type: none;
+    height: 46px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
 
-    #menu a {
-        text-decoration: none;
-        color: #4e4e4e;
-        transition: 400ms all;
-    }
+#menu a {
+    text-decoration: none;
+    color: #4e4e4e;
+    transition: 400ms all;
+}
 
 
 
@@ -133,7 +132,9 @@ header {
 #Carrito {
     width: 5%;
     float: right;
-    padding-top: 30px;
+    position: relative;
+    top: 32px;
+    left: 110px;
 }
 
     #Carrito img {
@@ -177,7 +178,7 @@ header {
     width: 100%;
     height: 350px;
     color: white;
-    text-shadow: 0px 0px 50px #000;
+    text-shadow: 0px 0px 5px #000;
 }
 
     #slider h1 {
@@ -199,7 +200,7 @@ header {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .cardProp img{
-    width:320px !important;
+    width:100% !important;
 }
 .cardContainer {
     padding: 10px 16px 2px 16px;
@@ -287,6 +288,86 @@ header {
 }
 
 
+/*CSS ITEM PRODUCTO*/
+
+.product {
+    display: grid;
+    grid-template-columns: 0.8fr 0.5fr;
+    margin: auto;
+    padding: 2.5em 0;
+    min-width: 600px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.product_photo {
+    position: relative;
+}
+
+
+.photo-main {
+    border-radius: 6px 6px 0 0;
+}
+
+.photo-main img {
+    position: absolute;
+    max-width: 100%;
+    filter: saturate(150%) contrast(120%) hue-rotate(10deg) drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.3));
+}
+
+.product__info {
+    padding: 0.8em 0;
+}
+
+
+.title h1 {
+    margin-bottom: 0.1em;
+    color: #4c4c4c;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.title span {
+    font-size: 0.7em;
+    color: #a6a6a6;
+}
+
+.price {
+    margin: 1.5em 0;
+    color: #ff3f40;
+    font-size: 1.2em;
+    
+
+}
+.price span {
+    padding-left: 0.15em;
+    font-size: 2.9em;
+}
+
+
+
+.description {
+    clear: left;
+    margin: 2em 0;
+    }
+.description h3 {
+    margin-bottom: 1em;
+}
+
+.description ul {
+    padding-left: 0 !important;
+    list-style: none;
+    margin-left: 1em;
+}
+
+.description li {
+    text-indent: -0.6em;
+    margin-bottom: 0.5em;
+}
+
+
+
+
 /*RESPONSIVE*/
 @media(max-width:1500px) {
     .center {
@@ -295,6 +376,7 @@ header {
 
 
     #menu ul {
+        line-height: 120px;
         width: 100%;
         margin: 0px;
         padding: 0px;
@@ -309,13 +391,32 @@ header {
     #Carrito {
         width: 5%;
         float: right;
-        padding-top: 35px;
+        top: 38px;
+        right: 45px;
+        left:0 !important;
     }
 
-        #Carrito img {
-            width: 40px;
-            height: 30px;
-        }
+    #Carrito img {
+        width: 40px;
+        height: 30px;
+    }
+    .colProp-lg-4 {
+        width: 32% !important;
+        margin: 50px 10px 0 0;
+    }
+    .icon-plus {
+        bottom: 46px;
+        left: 220px;
+    }
+    .spanPrice{
+        bottom:180px;
+    }
+
+    .product {
+        grid-template-columns: 1fr 0.5fr;
+
+    }
+
 }
 
 
@@ -333,28 +434,39 @@ header {
         width: 90%;
     }
 
-        #menu ul {
-            clear: both;
-            float: none;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0px;
-            line-height: 67px;
-        }
+    #menu ul {
+        clear: both;
+        float: none;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0px;
+        line-height: 67px;
+    }
 
     #content {
         float: none;
         width: 100%;
     }
-
     #Carrito {
         width: 5%;
         float: right;
-        padding-top: 15px;
+        top: 10px;
+        /*right: 45px;*/
+        left:-50px !important;
     }
 
-        #Carrito img {
-            width: 40px;
-            height: 30px;
-        }
+    #Carrito img {
+        width: 40px;
+        height: 30px;
+    }
+    .colProp-lg-4 {
+        width: 48% !important;
+        margin: 50px 10px 0 0;
+    }
+    .icon-plus {
+        left: 237px;
+    }
+    .photo-main img {
+        max-width: 90%;
+    }
 }
