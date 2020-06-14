@@ -23,6 +23,7 @@ namespace ArtShop.WebSite.Controllers
             var model = db.GetAll();
             return View(model);
         }
+        [Authorize]
         public ActionResult itemProduct(Product data)
         {
             return View(data);
