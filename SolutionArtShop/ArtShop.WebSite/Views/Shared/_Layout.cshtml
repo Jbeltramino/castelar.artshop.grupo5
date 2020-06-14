@@ -42,116 +42,116 @@
                         @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
-                        @Html.Partial("_LoginPartial")
-                    </li>
+                         @Html.Partial("_LoginPartial")
+                    </li> 
                 </ul>
-                <span class="nav-indicator"></span>
-            </nav>
-            <div id="Carrito" class="icon-container">
-                <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-nini">add_shopping_cart</i></a>
-                <span class="spanCart"><strong>U$200.20</strong></span>
+                    <span class="nav-indicator"></span>
+                </nav>
+                <div id="Carrito" class="icon-container">
+                    <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-nini">add_shopping_cart</i></a>
+                    <span class="spanCart"><strong>U$200.20</strong></span>
 
-            </div>
-            <div id="popover_content_wrapper" style="display: none">
-                <span id="cart_details"></span>
-                <div align="right">
-                    <a href="@Url.Action("Index","Cart")" class="btn btn-primary" id="check_out_cart">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Check out
-                    </a>
-                    <a href="#" class="btn btn-default" id="clear_cart">
-                        <span class="glyphicon glyphicon-trash"></span> Clear
-                    </a>
+                </div>
+                <div id="popover_content_wrapper" style="display: none">
+                    <span id="cart_details"></span>
+                    <div align="right">
+                        <a href="@Url.Action("Index","Cart")" class="btn btn-primary" id="check_out_cart">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Check out
+                        </a>
+                        <a href="#" class="btn btn-default" id="clear_cart">
+                            <span class="glyphicon glyphicon-trash"></span> Clear
+                        </a>
+                    </div>
                 </div>
             </div>
+        </header>
+
+        @*<div id="slider" class="slider-big">
+                <h1>Bienvenido a la tienda LPPA 5</h1>
+                <a href="" class="btn-white">Ir a la Tienda</a>
+            </div>*@
+
+        <div id="slider" class="slider-big">
+
+            @*@if (@ViewBag.Title == "Index")
+                {
+                    <h1>
+                        Tienda Oficial de Venta de Pinturas
+                    </h1>
+                }
+                else
+                {*@
+            <h1>
+                @ViewBag.Title
+            </h1>
+
+            @*  *@}
+
+
         </div>
-    </header>
+        <div class="clearfix"></div>
 
-    @*<div id="slider" class="slider-big">
-            <h1>Bienvenido a la tienda LPPA 5</h1>
-            <a href="" class="btn-white">Ir a la Tienda</a>
-        </div>*@
-
-    <div id="slider" class="slider-big">
-
-        @*@if (@ViewBag.Title == "Index")
-            {
-                <h1>
-                    Tienda Oficial de Venta de Pinturas
-                </h1>
-            }
-            else
-            {*@
-        <h1>
-            @ViewBag.Title
-        </h1>
-
-        @*  *@}
-
-
-    </div>
-    <div class="clearfix"></div>
-
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                        </ul>
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+            </div>*@
 
-    <div class="center">
-
-        @RenderBody()
-
-    </div>
-    <div class="clearfix"></div>
-    <footer id="footer">
         <div class="center">
-            <p>&copy; UAI Software</p>
+
+            @RenderBody()
+
         </div>
-    </footer>
-    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>*@
-    <script type="text/javascript">
+        <div class="clearfix"></div>
+        <footer id="footer">
+            <div class="center">
+                <p>&copy; UAI Software</p>
+            </div>
+        </footer>
+        @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>*@
+        <script type="text/javascript">
 
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $("[data-toggle=popover]").popover();
+                $("[data-toggle=popover]").popover();
 
-            $("[data-toggle=popover-cart]").popover({ trigger: "manual", html: true, content: $('#popover_content_wrapper').html(), animation: false })
-                .on("mouseenter", function () {
-                    var _this = this;
-                    $(this).popover("show");
-                    $(".popover").on("mouseleave", function () {
-                        $(_this).popover('hide');
+                $("[data-toggle=popover-cart]").popover({ trigger: "manual", html: true, content: $('#popover_content_wrapper').html(), animation: false })
+                    .on("mouseenter", function () {
+                        var _this = this;
+                        $(this).popover("show");
+                        $(".popover").on("mouseleave", function () {
+                            $(_this).popover('hide');
+                        });
+                    }).on("mouseleave", function () {
+                        var _this = this;
+                        setTimeout(function () {
+                            if (!$(".popover:hover").length) {
+                                $(_this).popover("hide");
+                            }
+                        }, 300);
                     });
-                }).on("mouseleave", function () {
-                    var _this = this;
-                    setTimeout(function () {
-                        if (!$(".popover:hover").length) {
-                            $(_this).popover("hide");
-                        }
-                    }, 300);
+
+                $('#popover_content_wrapper').mouseenter(function () {
+                    alert("HOLA");
                 });
 
-            $('#popover_content_wrapper').mouseenter(function () {
-                alert("HOLA");
             });
 
-        });
-
-    </script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+        </script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>

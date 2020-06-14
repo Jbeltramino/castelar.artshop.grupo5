@@ -8,6 +8,7 @@ namespace ArtShop.WebSite.Controllers
 {
     public class PaintsController : Controller
     {
+        [Authorize]
         // GET: Paints
         public ActionResult Index()
         {
