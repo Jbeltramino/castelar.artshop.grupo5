@@ -1,7 +1,10 @@
-﻿
+﻿@model  ArtShop.Data.Model.Product
 @{
     ViewBag.Title = "Producto de Prueba";
+    var itemProduct = Model;
 }
+
+
 
 <div class="contentPage">
     <section class="product">
@@ -12,18 +15,19 @@
         </div>
         <div class="product_info">
             <div class="title">
-                <h1>Pintura de Prueba</h1>
-                <span>COD: 25048</span>
+                <h1>@itemProduct.Title</h1>
+                <span>COD: @itemProduct.ID</span>
             </div>
             <div class="price">
-                U$ <span>100.10</span>
+                $ <span>@itemProduct.Price</span>
             </div>
             <div class="description">
                 <h3>DESCRIPCION</h3>
                 <ul>
-                    <li>Autor: Leonardo Da Vinci</li>
-                    <li>Año: 1480</li>
-                    <li>Lugar: Italia</li>
+                    <li>Autor: @itemProduct.ArtistID (ID Provisorio)</li>
+                    <li>Año: 1480 (Harcodeado provisorio)</li>
+                    <li>Lugar: Italia (Harcodeado provisorio)</li>
+                    <li>Descripción: @itemProduct.Description</li>
                 </ul>
             </div>
             <button class="btn btn-lg btn-outline-success">AGREGAR AL CARRITO</button>

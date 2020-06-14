@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtShop.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,18 @@ namespace SolutionPlatformLPPA5.Models
 {
     public class HomeController : Controller
     {
-        // GET: Home
+
+        readonly IProductData db;
+
+        public HomeController()
+        {
+            db = new InMemoryProductData();
+
+        }
         public ActionResult Index()
         {
-            return View();
+            var model = db.GetAll().Reverse().Take(6).Reverse();
+            return View(model);
         }
     }
 }

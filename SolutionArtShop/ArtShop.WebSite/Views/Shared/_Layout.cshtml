@@ -30,19 +30,14 @@
 
                     </li>
                     <li>
-                        @Html.ActionLink("Pinturas", "Index", "Paints", new { area = "" }, new { @class = "nav-item" })
+                        @Html.ActionLink("Pinturas", "Index", "Product", new { area = "" }, new { @class = "nav-item" })
                     </li>
                     <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
+                        @*@Html.Partial("_LoginPartial")*@
+                        <a href="/Account/Register" id="registerLink">Registrarse</a>
                     </li>
                     <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item" })
-                    </li>
-                    <li>
-                        @Html.Partial("_LoginPartial")
+                        <a href="/Account/Login" id="loginLink">Iniciar sesión</a>
                     </li>
                 </ul>
                 <span class="nav-indicator"></span>

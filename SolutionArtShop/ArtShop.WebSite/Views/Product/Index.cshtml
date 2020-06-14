@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<ArtShop.Data.Model.Product>
 @{
-    ViewBag.Title = "Tienda Oficial de Venta de Pinturas";
+    ViewBag.Title = "Pinturas";
 }
 
-
-
 <div class="contentPage">
-    <section class="sectionLeft">
-        <h1 class="centerText">Últimas pinturas</h1>
+    <aside>
+        POSIBLES FILTROS
+    </aside>
+    <section class="sectionRight">
+        <h1 class="centerText">Pinturas disponibles</h1>
         <div class="cardHome">
+            
             @foreach (var item in Model)
             {
                 <div class="cardProp colProp-lg-4">
@@ -20,17 +22,9 @@
                         <a href=@Url.Action("itemProduct","Product",@item)><span class="icon-plus">Ver<i class="medium material-icons" style="position: relative;top: 6px;">add_box</i></span></a>
                     </div>
                 </div>
-            }
+            }   
 
+           
         </div>
-        <span class="spanbtnHome">
-
-            @Html.ActionLink("Ver Más", "Index", "Product", new { area = "" }, new { @class = "btn btn-success btnHome", @style = "line-height: 30px;" })
-        </span>
-
     </section>
-    <aside>
-        SECCION ASIDE
-    </aside>
 </div>
-<div class="clearfix"></div>
