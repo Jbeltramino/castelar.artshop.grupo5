@@ -32,18 +32,14 @@
                     <li>
                         @Html.ActionLink("Pinturas", "Index", "Product", new { area = "" }, new { @class = "nav-item" })
                     </li>
-                    <li>
-                        @*@Html.Partial("_LoginPartial")*@
-                        <a href="/Account/Register" id="registerLink">Registrarse</a>
-                    </li>
-                    <li>
-                        <a href="/Account/Login" id="loginLink">Iniciar sesión</a>
-                    </li>
+                    
+                    @Html.Partial("_LoginPartial")
+
                 </ul>
                 <span class="nav-indicator"></span>
             </nav>
             <div id="Carrito" class="icon-container">
-                <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-nini">add_shopping_cart</i></a>
+                <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-small">add_shopping_cart</i></a>
                 <span class="spanCart"><strong>U$200.20</strong></span>
 
             </div>

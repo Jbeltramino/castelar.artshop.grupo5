@@ -61,8 +61,8 @@ header {
 
     #menu ul {
         line-height: 109px;
-        width: 80%;
-        float: right;
+        width: 100%;
+        float: left;
     }
 
         #menu ul li {
@@ -123,6 +123,17 @@ header {
     z-index: 1;
     border-radius: 8px 8px 0 0;
 }
+
+#logoutForm {
+    display: inline-block;
+    list-style-type: none;
+    height: 46px;
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 108px;
+    float:right;
+}
+
 /*Fin Menu*/
 .clearfix {
     clear: both;
@@ -137,7 +148,7 @@ header {
     width: 5%;
     float: right;
     position: relative;
-    top: 40px;
+    top: 38px;
     /*left: 110px;*/
 }
 
@@ -182,7 +193,7 @@ header {
     width: 100%;
     height: 350px;
     color: white;
-    text-shadow: 0px 0px 5px #000;
+    text-shadow: 0px 5px 8px #000;
 }
 
     #slider h1 {
@@ -282,15 +293,15 @@ header {
 .spanCart {
     left: 50px;
     position: relative;
-    bottom: 40px;
+    bottom: 35px;
 }
 
 .right {
-    float: right;
+    float: right !important;
 }
 
 .left {
-    float: left;
+    float: left !important;
 }
 
 .buttonsCart {
@@ -404,6 +415,15 @@ header {
         padding: 0px;
     }
 
+            #logoutForm {
+        display: inline-block;
+        list-style-type: none;
+        height: 46px;
+        margin-left: 15px;
+        margin-right: 15px;
+        line-height: 121px;
+        float:right;
+    }
     #content {
         float: none;
         width: 100%;
@@ -413,7 +433,7 @@ header {
     #Carrito {
         width: 10%;
         float: right;
-        /*margin-right:20px;*/
+        top:45px;
     }
 
         #Carrito img {
@@ -441,7 +461,8 @@ header {
     .spanCart {
         left: 3px;
         position: relative;
-        bottom: 17px;
+        bottom: 11px;
+    
     }
 }
 
@@ -467,9 +488,12 @@ header {
             width: 100%;
             margin: 0 auto;
             padding: 0px;
-            line-height: 67px;
+            line-height: 61px;
         }
-
+    #logoutForm {
+        line-height:64px;
+        float: right;
+    }
     #content {
         float: none;
         width: 100%;
@@ -478,7 +502,7 @@ header {
     #Carrito {
         width: 5%;
         float: right;
-        top: 10px;
+        top: 17px;
         /*right: 45px;*/
         left: -50px !important;
     }
@@ -491,7 +515,7 @@ header {
     .spanCart {
         left: 50px;
         position: relative;
-        bottom: 40px;
+        bottom: 36px;
     }
 
     .colProp-lg-4 {
