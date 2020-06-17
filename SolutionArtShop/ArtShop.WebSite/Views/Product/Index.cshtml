@@ -10,7 +10,7 @@
     <section class="sectionRight">
         <h1 class="centerText">Pinturas disponibles</h1>
         <div class="cardHome">
-            
+
             @foreach (var item in Model)
             {
                 <div class="cardProp colProp-lg-4">
@@ -22,9 +22,10 @@
                         <a href=@Url.Action("itemProduct","Product",@item)><span class="icon-plus">Ver<i class="medium material-icons" style="position: relative;top: 6px;">add_box</i></span></a>
                     </div>
                 </div>
-            }   
+            }
 
-           
+
         </div>
     </section>
 </div>
+
