@@ -57,47 +57,22 @@
         </div>
     </header>
 
-    @*<div id="slider" class="slider-big">
-            <h1>Bienvenido a la tienda LPPA 5</h1>
-            <a href="" class="btn-white">Ir a la Tienda</a>
-        </div>*@
+   
 
     <div id="slider" class="slider-big">
 
-        @*@if (@ViewBag.Title == "Index")
-            {
-                <h1>
-                    Tienda Oficial de Venta de Pinturas
-                </h1>
-            }
-            else
-            {*@
+      
         <h1>
             @ViewBag.Title
         </h1>
 
-        @*  *@}
+       
 
 
     </div>
     <div class="clearfix"></div>
 
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+    
 
     <div class="center">
 
@@ -110,8 +85,6 @@
             <p>&copy; UAI Software</p>
         </div>
     </footer>
-    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>*@
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -133,10 +106,6 @@
                         }
                     }, 300);
                 });
-
-            $('#popover_content_wrapper').mouseenter(function () {
-                alert("HOLA");
-            });
 
         });
 

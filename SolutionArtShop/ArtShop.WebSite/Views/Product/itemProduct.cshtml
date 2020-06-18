@@ -44,11 +44,10 @@
 
         $("#linkCarrito").click(function () {
             var value = $(document).find("#cartValue").text();
-            var numberValue =  parseInt(value.substr(1));
+            var numberValue =  parseFloat(value.substr(1));
             numberValue = numberValue + parseFloat(("@itemProduct.Price").replace(",","."));
             $(document).find("#cartValue").empty();
             $(document).find("#cartValue").html("<strong>$" + numberValue+"</strong>");
-
 
         });
     </script>
