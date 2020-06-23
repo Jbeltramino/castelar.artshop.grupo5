@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "ABM";
+}
+
+<div class="formStyle">
+    <form>
+        <div class="section"><span>1</span>Seleccionar Modelo</div>
+        <div class="interiorCard">
+            <label>Modelos <select id="selModel"><option></option><option>Pinturas</option><option>Artistas</option></select></label>
+
+        </div>
+
+
+        <div id="restDiv" class="d-none">
+            <div class="section"><span>2</span>Listado</div>
+            <div id="paint" class="interiorCard d-none">
+                <a id="linkCrearPaint" href="@Url.Action("Create","ABM")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nueva Pintura</a>
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Título</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Pintura Mona Lisa</td>
+                            <td>xxxxx</td>
+                            <td>U$200.20</td>
+                            <th> <a href="@Url.Action("Update","ABM")" ><i class="material-icons icon-small">create</i></a><i class="material-icons icon-small">delete_outline</i></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="artist" class="interiorCard d-none">
+                <a id="linkCrearPaint" href="@Url.Action("Create","ABM")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nuevo Artista</a>
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Descripcion</th>
+                            <th>Pais</th>
+                            <th>Acciones</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>Descripcion de la persona</td>
+                            <td>Argentina</td>
+                            <th> <a href="@Url.Action("Update","ABM")" ><i class="material-icons icon-small">create</i></a><i class="material-icons icon-small">delete_outline</i></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+
+        $("#selModel").change(function () {
+
+            
+            if ($("#selModel").val() == "Pinturas") {
+
+                $("#restDiv").removeClass("d-none");
+                $("#paint").removeClass("d-none");
+                $("#artist").addClass("d-none");
+            } else if ($("#selModel").val() == "Artistas") {
+                $("#restDiv").removeClass("d-none");
+                $("#artist").removeClass("d-none");
+                $("#paint").addClass("d-none");
+            } else {
+                $("#restDiv").addClass("d-none");
+            }
+        });
+    </script>
+
+
+}
