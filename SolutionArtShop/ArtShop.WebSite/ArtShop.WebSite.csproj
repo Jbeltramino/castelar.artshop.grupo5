@@ -243,10 +243,10 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\itemProduct.cshtml" />
-    <Content Include="Views\Artist\Index.cshtml" />
     <Content Include="Views\ABM\Index.cshtml" />
     <Content Include="Views\ABM\Create.cshtml" />
     <Content Include="Views\ABM\Update.cshtml" />
+    <Content Include="Views\Artist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
