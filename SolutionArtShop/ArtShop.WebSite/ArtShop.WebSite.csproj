@@ -270,6 +270,10 @@
       <Project>{f0efebbb-595f-4c31-9411-278dc45cf55b}</Project>
       <Name>ArtShop.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ArtShop.Services\ArtShop.Services.csproj">
+      <Project>{c1b1a71a-4ff8-4d8e-800f-4218a42a7669}</Project>
+      <Name>ArtShop.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
