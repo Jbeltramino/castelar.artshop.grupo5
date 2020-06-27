@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtShop.Data.Model
 {
-    public class Product : Identity
+    public class Product : IdentityBase
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -13,5 +13,6 @@ namespace ArtShop.Data.Model
         public float Price { get; set; }
         public int QuantitySold { get; set; }
         public float AvgStarts { get; set; }
+        public virtual Artist Artist {get;set;}
     }
 }

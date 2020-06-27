@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtShop.Data.Model
 {
-    public class Order : Identity
+    public class Order : IdentityBase
     {
         public int UserId { get; set; }
         public DateTime OrderDate { get; set; }
