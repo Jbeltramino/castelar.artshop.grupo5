@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ArtShop.Data.Services
 {
-    public class InMemoryProductData : IProductData
+    public class InMemoryProductData : BaseDataService<Product>
     {
         readonly List<Product> Products;
 

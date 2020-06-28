@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtShop.Data.Model
 {
-    public class Cart : Identity
+    public class Cart : IdentityBase
     {
         public string Cookie { get; set; }
         public DateTime CartDate { get; set; }
