@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ABM Pinturas";
+}
+
+
+<div class="formStyle">
+    <form>
+        <div id="restDiv" >
+            <div id="paint" class="interiorCard">
+                <a id="linkCrearPaint" href="@Url.Action("Create","ABM")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nueva Pintura</a>
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Título</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Pintura Mona Lisa</td>
+                            <td>xxxxx</td>
+                            <td>U$200.20</td>
+                            <th> <a href="@Url.Action("Update","ABM")"><i class="material-icons icon-small">create</i></a><i class="material-icons icon-small">delete_outline</i></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+

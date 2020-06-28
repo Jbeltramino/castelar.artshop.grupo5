@@ -458,40 +458,6 @@ header {
         box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
     }
 
-    .formStyle .section {
-        color: #881430;
-        margin-bottom: 5px;
-    }
-
-        .formStyle .section span {
-            background: #881430;
-            padding: 5px 10px 5px 10px;
-            position: absolute;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            font-size: 14px;
-            margin-left: -45px;
-            color: #fff;
-            margin-top: -3px;
-        }
-
-    .formStyle input[type="button"],
-    .formStyle input[type="submit"] {
-        background: #881430;
-        padding: 8px 20px 8px 20px;
-        border-radius: 5px;
-        color: #fff;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-        border: 1px solid #257C9E;
-        font-size: 15px;
-    }
-
-        .formStyle input[type="button"]:hover,
-        .formStyle input[type="submit"]:hover {
-            background: #2A6881;
-            box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
-        }
 
 .addButton {
     margin-bottom: 10px;

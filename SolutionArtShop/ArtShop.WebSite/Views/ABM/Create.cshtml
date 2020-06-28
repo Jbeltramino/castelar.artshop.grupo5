@@ -4,16 +4,9 @@
 }
 <div class="formStyle">
     <form>
-        <div class="section"><span>1</span>Seleccionar Modelo</div>
-        <div class="interiorCard">
-            <label>Modelos <select id="selModel"><option>Pinturas</option><option>Artistas</option></select></label>
-
-        </div>
-
-
-        <div id="restDiv" class="d-none">
+        <div id="restDiv">
             <div class="section"><span>2</span>Contenido</div>
-            <div id="paint" class="interiorCard d-none">
+            <div id="paint" class="interiorCard ">
                 <label>Titulo <input type="text" name="txtTitle" /></label>
                 <label>Descripción<textarea name="txtAreaDescripcion"> </textarea></label>
                 <select id="selArtist"><option>Artista Prueba</option></select>
@@ -21,14 +14,14 @@
                 <label>Imagen <input type="file" name="fileImage" /></label>
 
             </div>
-            <div id="artist" class="interiorCard d-none">
+            <div id="artist" class="interiorCard ">
                 <label>Nombre <input type="text" name="txtNombre" /></label>
                 <label>Apellido <input type="text" name="txtApellido" /></label>
                 <label>Pais <input type="text" name="txtPais" /></label>
                 <label>Descripción <input type="text" name="txtDescripcion" /></label>
             </div>
             <div class="button-section">
-                <input type="submit" name="Sign Up" />
+                <input class="btn btn-lg btn-outline-success" type="submit" name="Sign Up" />
             </div>
         </div>
 
@@ -41,14 +34,11 @@
 
         $("#selModel").change(function () {
 
-            console.log($("#selModel").val());
             if ($("#selModel").val() == "Pinturas") {
 
-                 $("#restDiv").removeClass("d-none");
                  $("#paint").removeClass("d-none");
                  $("#artist").addClass("d-none");
             } else if ($("#selModel").val() == "Artistas") {
-                $("#restDiv").removeClass("d-none");
                 $("#artist").removeClass("d-none");
                 $("#paint").addClass("d-none");
                 }

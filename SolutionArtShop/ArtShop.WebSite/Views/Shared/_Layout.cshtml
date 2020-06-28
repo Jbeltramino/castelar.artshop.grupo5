@@ -20,7 +20,7 @@
     <header id="header">
         <div class="centerHeader">
             <div id="logo">
-                <a id="cart" href="@Url.Action("Index","Home")"><img src="~/Content/Images/logo.png" /></a>
+                <a id="cart" href="@Url.Action("Index","Home")"><img src="~/Content/Images/logoHome.png" /></a>
             </div>
 
             <nav id="menu">
@@ -32,10 +32,18 @@
                     <li>
                         @Html.ActionLink("Pinturas", "Index", "Product", new { area = "" }, new { @class = "nav-item" })
                     </li>
-                    
-                    @Html.Partial("_LoginPartial")
+                    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        <li>
+                            @Html.ActionLink("ABM Pinturas", "ABMView", "Product", new { area = "" }, new { @class = "nav-item" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("ABM Artistas", "ABMView", "Artist", new { area = "" }, new { @class = "nav-item" })
+                        </li>
+                    }
+                        @Html.Partial("_LoginPartial")
 
-                </ul>
+                    </ul>
                 <span class="nav-indicator"></span>
             </nav>
             <div id="Carrito" class="icon-container">

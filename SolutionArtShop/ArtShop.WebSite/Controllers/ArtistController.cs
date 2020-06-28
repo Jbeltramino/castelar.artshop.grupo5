@@ -13,5 +13,11 @@ namespace ArtShop.WebSite.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ABMView()
+        {
+            return View();
+        }
     }
 }
