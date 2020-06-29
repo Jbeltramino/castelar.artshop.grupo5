@@ -1,7 +1,30 @@
-﻿
+﻿@model IEnumerable<ArtShop.Data.Model.Artist>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Artistas";
 }
 
-<h2>Index</h2>
+    <div class="contentPage">
+        <section class="sectionRight">
+            <div class="cardHome">
+                @foreach (var item in Model)
+                {
+                    <div class="cardProp colProp-lg-4">
+                        <div class="cardContainer">
+                            <h4><b>@Html.DisplayFor(model=>item.FullName)</b> </h4>
+                            <p>@Html.DisplayNameFor(model => model.Country): @Html.DisplayFor(model => item.Country)</p>
+                            @*<a href=@Url.Action("itemProduct","Product",@item)><span class="icon-plus">Ver<i class="medium material-icons" style="position: relative;top: 6px;">add_box</i></span></a>*@
+                        </div>
+                    </div>
+                }
 
+            </div>
+            @*<span class="spanbtnHome">
+
+                @Html.ActionLink("Ver Más", "Index", "Product", new { area = "" }, new { @class = "btn btn-success btnHome", @style = "line-height: 30px;" })
+            </span>*@
+
+        </section>
+        <aside>
+            SECCION ASIDE
+        </aside>
+    </div>

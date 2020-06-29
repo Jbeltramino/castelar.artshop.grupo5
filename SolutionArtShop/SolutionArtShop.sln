@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtShop.WebSite", "ArtShop.WebSite\ArtShop.WebSite.csproj", "{24AD3F2C-1C11-4E72-9385-ADD21361A222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtShop.Data", "ArtShop.Data\ArtShop.Data.csproj", "{F0EFEBBB-595F-4C31-9411-278DC45CF55B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtShop.Data", "ArtShop.Data\ArtShop.Data.csproj", "{F0EFEBBB-595F-4C31-9411-278DC45CF55B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtShop.Services", "ArtShop.Services\ArtShop.Services.csproj", "{C1B1A71A-4FF8-4D8E-800F-4218A42A7669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtShop.Services", "ArtShop.Services\ArtShop.Services.csproj", "{C1B1A71A-4FF8-4D8E-800F-4218A42A7669}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -83,7 +83,7 @@ header {
 
 .nav-item {
     color: #83818c;
-    padding: 20px;
+    padding: 10px;
     text-decoration: none;
     transition: 0.3s;
     margin: 0 6px;
@@ -450,7 +450,7 @@ header {
     .formStyle textarea,
     .formStyle select {
         display: block;
-        box-sizing: border-box;
+        box-sizing: border-box; 
         width: 100%;
         padding: 8px;
         border-radius: 6px;
@@ -469,6 +469,12 @@ header {
     top: 7px;
     line-height: 0;
     font-size: 1.5rem !important;
+}
+
+.error {
+    color: #D8000C;
+    /*background-color: #FFBABA;*/
+    padding:10px;
 }
 /*RESPONSIVE*/
 @media(max-width:1500px) {

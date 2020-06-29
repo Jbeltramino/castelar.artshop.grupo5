@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ArtShop.Data.Model.Artist>
 @{
     ViewBag.Title = "ABM Artistas";
 }
@@ -8,29 +8,34 @@
     <form>
         <div id="restDiv">
             <div id="artist" class="interiorCard">
-                    <a id="linkCrearPaint" href="@Url.Action("Create","ABM")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nuevo Artista</a>
-                    <table class="table cart-items">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Descripcion</th>
-                                <th>Pais</th>
-                                <th>Acciones</th>
+                <a id="linkCrearPaint" href="@Url.Action("Create","Artist")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nuevo Artista</a>
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Country)</th>
+                            <th>@Html.DisplayNameFor(model => model.LifeSpan)</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalProducts)</th>
+                            <th>Acciones</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>Descripcion de la persona</td>
-                                <td>Argentina</td>
-                                <th> <a href="@Url.Action("Update","ABM")"><i class="material-icons icon-small">create</i></a><i class="material-icons icon-small">delete_outline</i></th>
-                            </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.FullName)</td>
+                            <td>@Html.DisplayFor(model => item.Country) </td>
+                            <td>@Html.DisplayFor(model => item.LifeSpan)</td>
+                            <td>@Html.DisplayFor(model => item.Description)</td>
+                            <td>@Html.DisplayFor(model => item.TotalProducts)</td>
+                            <th> <a href="@Url.Action("Edit", "Artist", new {id=item.Id })"><i class="material-icons icon-small">create</i></a><a href="@Url.Action("Delete", "Artist", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a></th>
+                        </tr>
+                        }
                         </tbody>
-                    </table>
-                </div>
+                </table>
+            </div>
         </div>
 
     </form>

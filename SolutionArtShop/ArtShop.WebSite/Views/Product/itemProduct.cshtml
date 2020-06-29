@@ -1,7 +1,7 @@
 ﻿@model  ArtShop.Data.Model.Product
 @{
-    ViewBag.Title = "Producto de Prueba";
-    var itemProduct = Model;
+    ViewBag.Title = Html.DisplayNameFor(model => model.Title);
+    
 }
 
 
@@ -15,19 +15,16 @@
         </div>
         <div class="product_info">
             <div class="title">
-                <h1>@itemProduct.Title</h1>
-                <span>COD: @itemProduct.Id</span>
+                <h1>@Html.DisplayFor(model => model.Title)</h1>
             </div>
             <div class="price">
-                $ <span>@itemProduct.Price</span>
+                $ <span>@Html.DisplayFor(model => model.Price)</span>
             </div>
             <div class="description">
                 <h3>DESCRIPCION</h3>
                 <ul>
-                    <li>Autor: @itemProduct.ArtistID (ID Provisorio)</li>
-                    <li>Año: 1480 (Harcodeado provisorio)</li>
-                    <li>Lugar: Italia (Harcodeado provisorio)</li>
-                    <li>Descripción: @itemProduct.Description</li>
+                    <li>Autor: @Html.DisplayFor(model => model.ArtistID)</li>
+                    <li>Descripción: @Html.DisplayFor(model => model.Description)</li>
                 </ul>
             </div>
             <button id="linkCarrito" class="btn btn-lg btn-outline-success">AGREGAR AL CARRITO</button>
@@ -35,7 +32,6 @@
     </section>
 
 </div>
-
 @section scripts{
 
     <script>
@@ -45,7 +41,7 @@
         $("#linkCarrito").click(function () {
             var value = $(document).find("#cartValue").text();
             var numberValue =  parseFloat(value.substr(1));
-            numberValue = numberValue + parseFloat(("@itemProduct.Price").replace(",","."));
+            numberValue = numberValue + parseFloat(("@Html.DisplayFor(model => model.Price)").replace(",","."));
             $(document).find("#cartValue").empty();
             $(document).find("#cartValue").html("<strong>$" + numberValue+"</strong>");
 

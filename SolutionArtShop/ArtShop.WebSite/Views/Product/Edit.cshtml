@@ -1,0 +1,37 @@
+﻿@model ArtShop.Data.Model.Product
+@{
+    ViewBag.Title = "Editar Pintura";
+
+}
+
+@using (Html.BeginForm())
+{
+    <div class="formStyle">
+        <form>
+            <div id="restDiv">
+                @if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
+                {
+                    <span class="error">@ViewBag.MessageDanger</span>
+                }
+            <div id="artist" class="interiorCard ">
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.CreatedOn)
+                @Html.HiddenFor(model => model.CreatedBy)
+                @Html.LabelFor(model => model.Title) @Html.EditorFor(model => model.Title)
+                @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
+                @Html.LabelFor(model => model.ArtistID)  @Html.DropDownListFor(model => model.ArtistID, new SelectList(Model.Artistas, "Id", "FullName", Model.ArtistID))
+                @Html.LabelFor(model => model.Image) @Html.TextBoxFor(model => model.Image, new { type = "file" })
+                @Html.LabelFor(model => model.Price) @Html.EditorFor(model => model.Price)
+            </div>
+                <div class="button-section">
+                    <input class="btn btn-lg btn-outline-success" type="submit" name="Sign Up" />
+                    @Html.ActionLink("Volver a la lista", "ABMView", new { area = "" }, new { @class = "btn btn-lg btn-outline-primary" })
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+}
+

@@ -1,0 +1,34 @@
+﻿@model ArtShop.Data.Model.Artist
+@{
+    ViewBag.Title = "Crear Artista";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="formStyle">
+        <form>
+            <div id="restDiv">
+                @if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger!= null)
+                {
+                    <span class="error">@ViewBag.MessageDanger</span>
+                }
+                <div id="artist" class="interiorCard ">
+                    @Html.LabelFor(model => model.FirstName) @Html.EditorFor(model => model.FirstName)
+                    @Html.LabelFor(model => model.LastName) @Html.EditorFor(model => model.LastName)
+                    @Html.LabelFor(model => model.LifeSpan) @Html.EditorFor(model => model.LifeSpan)
+                    @Html.LabelFor(model => model.Country) @Html.EditorFor(model => model.Country)
+                    @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
+                    @Html.LabelFor(model => model.TotalProducts) @Html.EditorFor(model => model.TotalProducts)
+                </div>
+                <div class="button-section">
+                    <input class="btn btn-lg btn-outline-success" type="submit" name="Sign Up" />
+                    @Html.ActionLink("Volver a la lista", "ABMView",new { area = "" }, new { @class = "btn btn-lg btn-outline-primary" })
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+}
+
