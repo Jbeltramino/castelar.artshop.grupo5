@@ -1,6 +1,6 @@
 ﻿@model  ArtShop.Data.Model.Product
 @{
-    ViewBag.Title = Html.DisplayNameFor(model => model.Title);
+    ViewBag.Title = Html.DisplayFor(model => model.Title);
     
 }
 
@@ -27,7 +27,8 @@
                     <li>Descripción: @Html.DisplayFor(model => model.Description)</li>
                 </ul>
             </div>
-            <button id="linkCarrito" class="btn btn-lg btn-outline-success">AGREGAR AL CARRITO</button>
+            @*<button id="linkCarrito" class="btn btn-lg btn-outline-success">AGREGAR AL CARRITO</button>*@
+            @Html.ActionLink("Agregar al Carrito","AddToCart","Cart",new {Id=Model.Id},new {@class="btn btn-lg btn-outline-success" })
         </div>
     </section>
 
@@ -42,8 +43,8 @@
             var value = $(document).find("#cartValue").text();
             var numberValue =  parseFloat(value.substr(1));
             numberValue = numberValue + parseFloat(("@Html.DisplayFor(model => model.Price)").replace(",","."));
-            $(document).find("#cartValue").empty();
-            $(document).find("#cartValue").html("<strong>$" + numberValue+"</strong>");
+            //$(document).find("#cartValue").empty();
+            //$(document).find("#cartValue").html("<strong>$" + numberValue+"</strong>");
 
         });
     </script>

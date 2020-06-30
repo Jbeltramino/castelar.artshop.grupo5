@@ -25,6 +25,10 @@ namespace ArtShop.Data.Services
 
         public virtual void Delete(T entity)
         {
+            if (!db.Set<T>().Local.Contains(entity))
+            {
+                db.Set<T>().Attach(entity);
+            }
             db.Set<T>().Remove(entity);
             db.SaveChanges();
         }

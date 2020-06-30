@@ -48,7 +48,7 @@
             </nav>
             <div id="Carrito" class="icon-container">
                 <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-small">add_shopping_cart</i></a>
-                <span id="cartValue" class="spanCart"><strong>$00.0</strong></span>
+                <span id="cartValue" class="spanCart"><strong id="cartPrice"></strong></span>
 
             </div>
             <div id="popover_content_wrapper" style="display: none">
@@ -57,7 +57,7 @@
                     <a href="@Url.Action("Index","Cart")" class="btn btn-primary" id="check_out_cart">
                         <span class="glyphicon glyphicon-shopping-cart"></span> Check out
                     </a>
-                    <a href="#" class="btn btn-default" id="clear_cart">
+                    <a href="@Url.Action("deleteCartItems","Cart")" class="btn btn-default" id="clear_cart">
                         <span class="glyphicon glyphicon-trash"></span> Clear
                     </a>
                 </div>
@@ -97,6 +97,17 @@
 
         $(document).ready(function () {
 
+            $.ajax({
+            type: "GET",
+            url: '@Url.Action("getPrice", "Cart")',
+
+            dataType: 'json',
+                success: function (result) {
+                    $("#cartPrice").text("$" + result.response);
+                
+            }
+        });
+
             $("[data-toggle=popover]").popover();
 
             $("[data-toggle=popover-cart]").popover({ trigger: "manual", html: true, content: $('#popover_content_wrapper').html(), animation: false })
@@ -116,6 +127,9 @@
                 });
 
         });
+
+        
+
 
     </script>
     @Scripts.Render("~/bundles/jquery")

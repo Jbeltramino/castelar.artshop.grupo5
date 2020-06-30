@@ -81,17 +81,17 @@ namespace ArtShop.WebSite.Controllers
                 return View(pintura);
             try
             {
-                HttpPostedFileBase file = Request.Files["Image"];
-                var fileName = String.Empty;
-                fileName = Path.GetFileName(file.FileName);
+                //HttpPostedFileBase file = Request.Files["Image"];
+                //var fileName = String.Empty;
+                //fileName = Path.GetFileName(file.FileName);
                
-                fileName = fileName.Substring(0, fileName.IndexOf('.')) + "_" + DateTime.Now.Millisecond + "- " + DateTime.Now.Second + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Hour + "." + fileName.Substring(fileName.IndexOf('.') + 1);
+                //fileName = fileName.Substring(0, fileName.IndexOf('.')) + "_" + DateTime.Now.Millisecond + "- " + DateTime.Now.Second + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Hour + "." + fileName.Substring(fileName.IndexOf('.') + 1);
                 
-                var uploadDir = "~/Content/Images";
+                //var uploadDir = "~/Content/Images";
                 
-                var imagePath = Path.Combine(Server.MapPath(uploadDir), fileName);
+                //var imagePath = Path.Combine(Server.MapPath(uploadDir), fileName);
                 
-                file.SaveAs(imagePath);
+                //file.SaveAs(imagePath);
                 db.Create(pintura);
                 return RedirectToAction("ABMView");
             }
