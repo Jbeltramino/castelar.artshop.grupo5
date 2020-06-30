@@ -59,7 +59,8 @@ namespace ArtShop.WebSite.Controllers
                 {
                     ProductId = Convert.ToInt32(id),
                     Price = oPaint.Price,
-                    Quantity = 1
+                    Quantity = 1,
+                    _Product = oPaint
                 };
                 
 
@@ -136,7 +137,8 @@ namespace ArtShop.WebSite.Controllers
                     ProductId = Convert.ToInt32(id),
                     Price = oPaint.Price,
                     Quantity = 1,
-                    CartId=idCart
+                    CartId=idCart,
+                    _Product = oPaint
                 };
                 
 

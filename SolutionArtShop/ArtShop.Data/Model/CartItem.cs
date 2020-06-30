@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ArtShop.Data.Model
@@ -19,10 +20,10 @@ namespace ArtShop.Data.Model
         [Required]
         [DisplayName("Cantidad")]
         public int Quantity { get; set; }
+        [NotMapped]
+        [DisplayName("Producto")]
+        public Product _Product { get; set; }
     }
 
-    public class ListItems
-    {
-        public List<CartItem> itemCartList { get; set; }
-    }
+   
 }
