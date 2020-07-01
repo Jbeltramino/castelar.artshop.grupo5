@@ -196,7 +196,6 @@ namespace ArtShop.WebSite.Controllers
 
                 }
             }
-
             
             return Json(new { response = precio }, JsonRequestBehavior.AllowGet);
         }
@@ -219,7 +218,7 @@ namespace ArtShop.WebSite.Controllers
 
                 }
             }
-            return Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
     }

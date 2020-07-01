@@ -2,35 +2,84 @@
 @{
     ViewBag.Title = "Carrito de Compras";
 }
-<div class="contentPage">
-    <table class="table cart-items">
-        <thead>
-            <tr>
-                <th colspan="2">@Html.DisplayNameFor(model => model._Product)</th>
-                <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-                <th>@Html.DisplayNameFor(model => model.Price)</th>
-
-            </tr>
-        </thead>
-
-        <tbody>
-
-            @foreach (var item in Model)
+    <div class="contentPage">
+        @using (Html.BeginForm())
+        {
+            if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
             {
-                <tr>
-                    <td colspan="2">@Html.DisplayFor(model => item._Product.Description)</td>
-                    <td>@Html.DisplayFor(model => item.Quantity)</td>
-                    <td>@Html.DisplayFor(model => item.Price)</td>
-                </tr>
+                <span class="error">@ViewBag.MessageDanger</span>
+            }
+            <table class="table cart-items">
+                <thead>
+                    <tr>
+                        <th colspan="2">@Html.DisplayNameFor(model => model._Product)</th>
+                        <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Price)</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td colspan="2">@Html.DisplayFor(model => item._Product.Description)</td>
+                            <td>@Html.DisplayFor(model => item.Quantity)</td>
+                            <td>@Html.DisplayFor(model => item.Price)</td>
+                            <td></td>
+                        </tr>
                     }
-                
-            </tbody>
-    </table>
-    <div class=" buttonsCart">
-        @Html.ActionLink("Seguir comprando", "Index", "Product", new { area = "" }, new { @class = "btn btn-lg btn-outline-primary", @style = "line-height: 30px;" })
-        @Html.ActionLink("Finalizar Compra", "Index", "Product", new { area = "" }, new { @class = "btn btn-lg btn-success", @style = "line-height: 30px;" })
-    </div>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+                        <td id="totalPrice"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class=" buttonsCart">
+                @Html.ActionLink("Seguir comprando", "Index", "Product", new { area = "" }, new { @class = "btn btn-lg btn-outline-primary", @style = "line-height: 30px;" })
+                <input value="Finalizar Compra" type="button" class="btn btn-lg btn-success" style="line-height: 30px;" onclick="saveOrder()" />
+                @*@Html.ActionLink("Finalizar Compra", "SaveOrder", "Order", new { itemsCount = Model.Count(),totalPrice= @totalPrice }, new { @class = "btn btn-lg btn-success", @style = "line-height: 30px;" })*@
+            </div>
 
 
+        }
+        </div>
+@section Scripts{
+    <script type="text/javascript">
 
-</div>
+      
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("getPrice", "Cart")',
+
+                dataType: 'json',
+                success: function (result) {
+                    $("#totalPrice").html(("$" + result.response));
+                }
+            });
+
+        });
+
+    function saveOrder() {
+        $.ajax({
+                type: "GET",
+                url: '@Url.Action("SaveOrder", "Order")',
+            data: {
+                itemsCount : @Model.Count(),
+                totalPrice : $("#totalPrice").html()
+            },
+                dataType: 'json',
+                success: function (result) {
+
+                }
+            });
+       
+    }
+    </script>
+}
