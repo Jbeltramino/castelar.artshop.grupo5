@@ -16,15 +16,16 @@ namespace ArtShop.WebSite.Controllers
     {
 
         readonly BaseDataService<Product> db;
-        
+        readonly BaseDataService<Artist> dbArtist ;
+
         public ProductController()
         {
             db = new BaseDataService<Product>();
-            
+            dbArtist = new BaseDataService<Artist>();
         }
         public ActionResult Index()
         {
-            var model = db.Get();
+            var model = db.Get().OrderBy(x=>x.Id);
             return View(model);
         }
         public ActionResult itemProduct(int? id)
@@ -50,12 +51,16 @@ namespace ArtShop.WebSite.Controllers
         public ActionResult ABMView()
         {
             var list = db.Get();
+            foreach(var item in list)
+            {
+                item.Artista = dbArtist.GetById(Convert.ToInt32(item.ArtistID)); 
+            }
             return View(list);
         }
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            BaseDataService<Artist> dbArtist = new BaseDataService<Artist>();
+            
 
 
             //List<SelectListItem> listItems = new List<SelectListItem>();
@@ -144,7 +149,7 @@ namespace ArtShop.WebSite.Controllers
 
         }
 
-
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -167,7 +172,7 @@ namespace ArtShop.WebSite.Controllers
             {
                 Logger.Instance.LogException(ex);
                 ViewBag.MessageDanger = ex.Message;
-                return View(pintura);
+                return RedirectToAction("ABMView");
             }
 
         }

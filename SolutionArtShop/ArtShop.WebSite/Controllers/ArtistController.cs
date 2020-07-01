@@ -96,7 +96,7 @@ namespace ArtShop.WebSite.Controllers
 
         }
 
-
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,7 +119,7 @@ namespace ArtShop.WebSite.Controllers
             {
                 Logger.Instance.LogException(ex);
                 ViewBag.MessageDanger = ex.Message;
-                return View(artist);
+                return RedirectToAction("ABMView");
             }
 
         }

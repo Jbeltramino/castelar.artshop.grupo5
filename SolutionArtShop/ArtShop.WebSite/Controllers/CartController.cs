@@ -199,7 +199,6 @@ namespace ArtShop.WebSite.Controllers
             
             return Json(new { response = precio }, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult deleteCartItems()
         {
             

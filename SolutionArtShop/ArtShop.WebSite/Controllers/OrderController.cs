@@ -1,6 +1,7 @@
 ﻿using ArtShop.Data.Model;
 using ArtShop.Data.Services;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using OdeToFood.WebSite.Controllers;
 using OdeToFood.WebSite.Services;
 using System;
@@ -25,7 +26,7 @@ namespace ArtShop.WebSite.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         public ActionResult SaveOrder(int itemsCount, string totalPrice)
         {
             double precioTotal = Convert.ToDouble(totalPrice.Replace("$", ""));
@@ -65,6 +66,6 @@ namespace ArtShop.WebSite.Controllers
 
         }
 
-        
+
     }
 }

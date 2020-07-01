@@ -32,5 +32,8 @@ namespace ArtShop.Data.Model
 
         [NotMapped]
         public List<Artist> Artistas { get; set; }
+        [NotMapped]
+        public Artist Artista { get; set; }
+
     }
 }

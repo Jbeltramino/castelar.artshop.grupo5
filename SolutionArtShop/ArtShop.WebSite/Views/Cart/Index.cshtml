@@ -68,7 +68,7 @@
 
     function saveOrder() {
         $.ajax({
-                type: "GET",
+                type: "POST",
                 url: '@Url.Action("SaveOrder", "Order")',
             data: {
                 itemsCount : @Model.Count(),

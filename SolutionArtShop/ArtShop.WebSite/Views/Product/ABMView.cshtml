@@ -4,39 +4,43 @@
 }
 
 
-<div class="formStyle">
-    <form>
-        <div id="restDiv">
-            <div id="artist" class="interiorCard">
-                <a id="linkCrearPaint" href="@Url.Action("Create","Product")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nueva Pintura</a>
-                <table class="table cart-items">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.Title)</th>
-                            <th>@Html.DisplayNameFor(model => model.Description)</th>
-                            <th>@Html.DisplayNameFor(model => model.ArtistID)</th>
-                            <th>@Html.DisplayNameFor(model => model.Price)</th>
-                            <th>@Html.DisplayNameFor(model => model.QuantitySold)</th>
-                            <th>Acciones</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+    <div class="formStyle">
+        @if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
+        {
+            <span class="error">@ViewBag.MessageDanger</span>
+        }
+        <form>
+            <div id="restDiv">
+                <div id="artist" class="interiorCard">
+                    <a id="linkCrearPaint" href="@Url.Action("Create","Product")" class="btn btn-outline-success addButton"><i class="material-icons ">add_circle_outline</i>Nueva Pintura</a>
+                    <table class="table cart-items">
+                        <thead>
                             <tr>
-                                <td>@Html.DisplayFor(model => item.Title)</td>
-                                <td>@Html.DisplayFor(model => item.Description) </td>
-                                <td>@Html.DisplayFor(model => item.ArtistID)</td>
-                                <td>@Html.DisplayFor(model => item.Price)</td>
-                                <td>@Html.DisplayFor(model => item.QuantitySold)</td>
-                                <th> <a href="@Url.Action("Edit", "Product", new {id=item.Id })"><i class="material-icons icon-small">create</i></a><a href="@Url.Action("Delete", "Product", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a></th>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                                <th>Artista</th>
+                                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                                <th>@Html.DisplayNameFor(model => model.QuantitySold)</th>
+                                <th>Acciones</th>
 
-    </form>
-</div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(model => item.Title)</td>
+                                    <td>@Html.DisplayFor(model => item.Description) </td>
+                                    <td>@Html.DisplayFor(model => item.Artista.FullName)</td>
+                                    <td>@Html.DisplayFor(model => item.Price)</td>
+                                    <td>@Html.DisplayFor(model => item.QuantitySold)</td>
+                                    <th> <a href="@Url.Action("Edit", "Product", new {id=item.Id })"><i class="material-icons icon-small">create</i></a><a href="@Url.Action("Delete", "Product", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a></th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
