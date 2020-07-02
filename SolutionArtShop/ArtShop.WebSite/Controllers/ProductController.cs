@@ -45,6 +45,11 @@ namespace ArtShop.WebSite.Controllers
             return View(product);
             
         }
+        [HttpPost]
+        public ActionResult itemProduct(Product product)
+        {
+            return View(product);
+        }
 
 
         [Authorize(Roles = "Admin")]
