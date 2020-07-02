@@ -39,7 +39,7 @@ namespace ArtShop.WebSite.Controllers
             return RedirectToAction("index", "Home");
 
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult AddToCart(int? id)
         {
             Product oPaint = dbProduct.GetById(Convert.ToInt32(id));
