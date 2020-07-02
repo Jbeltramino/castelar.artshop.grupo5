@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ArtShop.WebSite.Controllers
@@ -17,10 +18,12 @@ namespace ArtShop.WebSite.Controllers
         // GET: Order
 
         readonly BaseDataService<Order> db;
+        readonly BaseDataService<CartItem> dbItem;
 
         public OrderController()
         {
             db = new BaseDataService<Order>();
+            dbItem = new BaseDataService<CartItem>();
         }
             public ActionResult Index()
         {
@@ -53,7 +56,26 @@ namespace ArtShop.WebSite.Controllers
                 try
                 {
                     db.Create(oOrder);
-                    return RedirectToAction("deleteCartItems", "Cart");
+                    //return RedirectToAction("deleteCartItems", "Cart");
+
+                    //Eliminamos los items 
+
+                    if (Request.Cookies["cookieCart"] != null)
+                    {
+
+                        Response.Cookies["cookieCart"].Expires = DateTime.Now.AddDays(-1);
+
+                        HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
+
+                        List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
+
+                        foreach (var item in listaItems)
+                        {
+                            dbItem.Delete(item);
+
+                        }
+                    }
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -62,7 +84,7 @@ namespace ArtShop.WebSite.Controllers
                 }
 
             }
-            return Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
+            return Redirect(Request.UrlReferrer.ToString());
 
         }
 

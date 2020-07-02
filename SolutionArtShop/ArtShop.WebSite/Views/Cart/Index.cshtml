@@ -3,12 +3,14 @@
     ViewBag.Title = "Carrito de Compras";
 }
     <div class="contentPage">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
         {
             if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
             {
                 <span class="error">@ViewBag.MessageDanger</span>
             }
+            @Html.Hidden("itemsCount", Model.Count())
+            @Html.Hidden("totalPrice",  "", new { @id = "idTotalPrice" })
             <table class="table cart-items">
                 <thead>
                     <tr>
@@ -40,13 +42,13 @@
             </table>
             <div class=" buttonsCart">
                 @Html.ActionLink("Seguir comprando", "Index", "Product", new { area = "" }, new { @class = "btn btn-lg btn-outline-primary", @style = "line-height: 30px;" })
-                <input value="Finalizar Compra" type="button" class="btn btn-lg btn-success" style="line-height: 30px;" onclick="saveOrder()" />
+                <input value="Finalizar Compra" type="submit" class="btn btn-lg btn-success" style="line-height: 30px;"  />
                 @*@Html.ActionLink("Finalizar Compra", "SaveOrder", "Order", new { itemsCount = Model.Count(),totalPrice= @totalPrice }, new { @class = "btn btn-lg btn-success", @style = "line-height: 30px;" })*@
             </div>
 
 
         }
-        </div>
+    </div>
 @section Scripts{
     <script type="text/javascript">
 
@@ -61,12 +63,13 @@
                 dataType: 'json',
                 success: function (result) {
                     $("#totalPrice").html(("$" + result.response));
+                    $("#idTotalPrice").val($("#totalPrice").html());
                 }
             });
 
         });
 
-    function saveOrder() {
+    @*function saveOrder() {
         $.ajax({
                 type: "POST",
                 url: '@Url.Action("SaveOrder", "Order")',
@@ -80,6 +83,6 @@
                 }
             });
        
-    }
+    }*@
     </script>
 }

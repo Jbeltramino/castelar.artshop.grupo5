@@ -1,52 +1,55 @@
 ﻿@model  ArtShop.Data.Model.Product
 @{
     ViewBag.Title = Html.DisplayFor(model => model.Title);
-    
+
 }
 
 
 
-<div class="contentPage">
-    <section class="product">
-        <div class="product_photo">
-            <div class="photo-main">
-                <img src="~/Content/Images/pinturaPrueba.png" alt="Pintura de Prueba">
-            </div>
-        </div>
-        <div class="product_info">
-            <div class="title">
-                <h1>@Html.DisplayFor(model => model.Title)</h1>
-            </div>
-            <div class="price">
-                $ <span>@Html.DisplayFor(model => model.Price)</span>
-            </div>
-            <div class="description">
-                <h3>DESCRIPCION</h3>
-                <ul>
-                    <li>Autor: @Html.DisplayFor(model => model.ArtistID)</li>
-                    <li>Descripción: @Html.DisplayFor(model => model.Description)</li>
-                </ul>
-            </div>
-            @*<button id="linkCarrito" class="btn btn-lg btn-outline-success">AGREGAR AL CARRITO</button>*@
-            @Html.ActionLink("Agregar al Carrito","AddToCart","Cart",new {Id=Model.Id},new {@class="btn btn-lg btn-outline-success" })
-        </div>
-    </section>
-
-</div>
+    <div class="contentPage">
+        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.Id)
+            <section class="product">
+                <div class="product_photo">
+                    <div class="photo-main">
+                        <img src="~/Content/Images/pinturaPrueba.png" alt="Pintura de Prueba">
+                    </div>
+                </div>
+                <div class="product_info">
+                    <div class="title">
+                        <h1>@Html.DisplayFor(model => model.Title)</h1>
+                    </div>
+                    <div class="price">
+                        $ <span>@Html.DisplayFor(model => model.Price)</span>
+                    </div>
+                    <div class="description">
+                        <h3>DESCRIPCION</h3>
+                        <ul>
+                            <li>Autor: @Html.DisplayFor(model => model.ArtistID)</li>
+                            <li>Descripción: @Html.DisplayFor(model => model.Description)</li>
+                        </ul>
+                    </div>
+                    <input type="submit" value="Agregar al Carrito" class="btn btn-lg btn-outline-success" />
+                    @*@Html.ActionLink("Agregar al Carrito", "AddToCart", "Cart", new { Id = Model.Id }, new { @class = "btn btn-lg btn-outline-success" })*@
+                </div>
+            </section>
+        }
+    </div>
 @section scripts{
 
     <script>
 
 
 
-        $("#linkCarrito").click(function () {
+        @*$("#linkCarrito").click(function () {
             var value = $(document).find("#cartValue").text();
             var numberValue =  parseFloat(value.substr(1));
             numberValue = numberValue + parseFloat(("@Html.DisplayFor(model => model.Price)").replace(",","."));
             //$(document).find("#cartValue").empty();
             //$(document).find("#cartValue").html("<strong>$" + numberValue+"</strong>");
 
-        });
+        });*@
     </script>
 
 

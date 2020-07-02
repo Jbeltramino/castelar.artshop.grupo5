@@ -40,10 +40,11 @@ namespace ArtShop.WebSite.Controllers
 
         }
         [Authorize]
-        public ActionResult AddToCart(int? id)
+        [HttpPost]
+        public ActionResult AddToCart(int? Id)
         {
-            Product oPaint = dbProduct.GetById(Convert.ToInt32(id));
-            if (id == null)
+            Product oPaint = dbProduct.GetById(Convert.ToInt32(Id));
+            if (Id == null)
             {
                 Logger.Instance.LogException(new Exception("Id Cart null "));
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,7 +58,7 @@ namespace ArtShop.WebSite.Controllers
                 List<CartItem> items = new List<CartItem>();
                 CartItem oCartItem =new CartItem()
                 {
-                    ProductId = Convert.ToInt32(id),
+                    ProductId = Convert.ToInt32(Id),
                     Price = oPaint.Price,
                     Quantity = 1,
                     _Product = oPaint
@@ -78,7 +79,7 @@ namespace ArtShop.WebSite.Controllers
                 var list = db.ValidateModel(oCart);
 
                 if (ModelIsValid(list))
-                    return RedirectToAction("itemProduct", "Product", new { id });
+                    return RedirectToAction("itemProduct", "Product", new { Id });
                 try
                 {
                     //Obtengo el id del carritoCreado
@@ -100,7 +101,7 @@ namespace ArtShop.WebSite.Controllers
 
 
                 if (ModelIsValid(list2))
-                    return RedirectToAction("itemProduct", "Product", new { id });
+                    return RedirectToAction("itemProduct", "Product", new { Id });
                 try
                 {
                     //Guardo el item
@@ -134,7 +135,7 @@ namespace ArtShop.WebSite.Controllers
 
                 CartItem oCartItem = new CartItem()
                 {
-                    ProductId = Convert.ToInt32(id),
+                    ProductId = Convert.ToInt32(Id),
                     Price = oPaint.Price,
                     Quantity = 1,
                     CartId=idCart,
@@ -153,7 +154,7 @@ namespace ArtShop.WebSite.Controllers
               
 
                 if (ModelIsValid(list2))
-                    return RedirectToAction("itemProduct", "Product", new { id });
+                    return RedirectToAction("itemProduct", "Product", new { Id });
                 try
                 {
                     //Guardo el item
@@ -179,7 +180,7 @@ namespace ArtShop.WebSite.Controllers
 
             }
 
-            return RedirectToAction("itemProduct", "Product", new {  id });
+            return RedirectToAction("itemProduct", "Product", new { Id });
         }
 
         public ActionResult getPrice()
