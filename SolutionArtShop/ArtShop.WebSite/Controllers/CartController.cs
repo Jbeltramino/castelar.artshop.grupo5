@@ -68,8 +68,9 @@ namespace ArtShop.WebSite.Controllers
                 //Seteo datos de cart
                 oCart.Cookie ="XX"; //ARREGLAR ESTO
                 oCart.ItemCount = 1;
-                var hoy = DateTime.Now.ToString();
-                var dateTime = DateTime.ParseExact(hoy,"dd/MM/yyyy HH:mm:ss",CultureInfo.InvariantCulture);
+                var format = "dd/MM/yyyy HH:mm:ss";
+                var hoy = DateTime.Now.ToString(format);
+                var dateTime = DateTime.ParseExact(hoy, format, CultureInfo.InvariantCulture);
                 oCart.CartDate = dateTime;
 
                
