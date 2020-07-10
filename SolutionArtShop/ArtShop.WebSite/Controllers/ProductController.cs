@@ -83,35 +83,36 @@ namespace ArtShop.WebSite.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(Product pintura)
+        public ActionResult Create(Product pintura, HttpPostedFileBase file)
         {
-            this.CheckAuditPattern(pintura, true);
-            var list = db.ValidateModel(pintura);
-            if (ModelIsValid(list))
-                return View(pintura);
-            try
-            {
-                //HttpPostedFileBase file = Request.Files["Image"];
-                //var fileName = String.Empty;
-                //fileName = Path.GetFileName(file.FileName);
-               
-                //fileName = fileName.Substring(0, fileName.IndexOf('.')) + "_" + DateTime.Now.Millisecond + "- " + DateTime.Now.Second + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Hour + "." + fileName.Substring(fileName.IndexOf('.') + 1);
-                
-                //var uploadDir = "~/Content/Images";
-                
-                //var imagePath = Path.Combine(Server.MapPath(uploadDir), fileName);
-                
-                //file.SaveAs(imagePath);
-                db.Create(pintura);
-                return RedirectToAction("ABMView");
-            }
-            catch (System.Exception ex)
-            {
-                Logger.Instance.LogException(ex);
-                ViewBag.MessageDanger = ex.Message;
-                return View(pintura);
-            }
+            
+            if (ModelState.IsValid)
+            {   
+                try
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        string fileName = Path.GetFileName(file.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Content/images/Paints"), fileName);
+                        file.SaveAs(path);
+                        pintura.Image = file.FileName;
+                        this.CheckAuditPattern(pintura, true);
+                        var list = db.ValidateModel(pintura);
+                        db.Create(pintura);
+                        return RedirectToAction("ABMView");
+                    }
 
+                }
+                catch (System.Exception ex)
+                {
+                    Logger.Instance.LogException(ex);
+                    ViewBag.MessageDanger = ex.Message;
+                    return View(pintura);
+                }
+            }
+        
+            ViewBag.MessageDanger = "Error al cargar el archivo";
+            return View(pintura);
         }
 
         public ActionResult Edit(int? id)
@@ -133,24 +134,49 @@ namespace ArtShop.WebSite.Controllers
             return View(pintura);
         }
         [HttpPost]
-        public ActionResult Edit(Product pintura)
+        public ActionResult Edit(Product pintura,HttpPostedFileBase file)
         {
-            this.CheckAuditPattern(pintura);
-            var list = db.ValidateModel(pintura);
-            if (ModelIsValid(list))
-                return View(pintura);
-            try
+            if (ModelState.IsValid)
             {
-                db.Update(pintura);
-                return RedirectToAction("ABMView");
+                try
+                {
+                    if (file != null)
+                    {
+                        if (file.ContentLength > 0)
+                        {
+                            string fileName = Path.GetFileName(file.FileName);
+                            string path = Path.Combine(Server.MapPath("~/Content/Images/Paints"), fileName);
+                            file.SaveAs(path);
+                            pintura.Image = file.FileName;
 
+                            this.CheckAuditPattern(pintura);
+                            var list = db.ValidateModel(pintura);
+
+                            db.Update(pintura);
+                            return RedirectToAction("ABMView");
+                        }
+                    }
+                    
+                    else
+                    {
+                        this.CheckAuditPattern(pintura);
+                        var list = db.ValidateModel(pintura);
+
+                        db.Update(pintura);
+                        return RedirectToAction("ABMView");
+
+                    }
+                   
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.Instance.LogException(ex);
+                    ViewBag.MessageDanger = ex.Message;
+                    return View(pintura);
+                }
             }
-            catch (Exception ex)
-            {
-                Logger.Instance.LogException(ex);
-                ViewBag.MessageDanger = ex.Message;
-                return View(pintura);
-            }
+            return View(pintura);
 
         }
 

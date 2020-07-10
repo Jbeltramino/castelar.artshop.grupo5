@@ -4,7 +4,7 @@
 
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="formStyle">
         <form>
@@ -17,10 +17,13 @@
                 @Html.HiddenFor(model => model.Id)
                 @Html.HiddenFor(model => model.CreatedOn)
                 @Html.HiddenFor(model => model.CreatedBy)
+                @Html.HiddenFor(model => model.Image)
                 @Html.LabelFor(model => model.Title) @Html.EditorFor(model => model.Title)
                 @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
                 @Html.LabelFor(model => model.ArtistID)  @Html.DropDownListFor(model => model.ArtistID, new SelectList(Model.Artistas, "Id", "FullName", Model.ArtistID))
-                @Html.LabelFor(model => model.Image) @Html.TextBoxFor(model => model.Image, new { type = "file" })
+                <label>Imagen</label>
+                <img width="200" src="~/Content/images/Paints/@Model.Image" />
+                @Html.TextBox("file", null, new { type = "file" })
                 @Html.LabelFor(model => model.Price) @Html.EditorFor(model => model.Price)
             </div>
                 <div class="button-section">

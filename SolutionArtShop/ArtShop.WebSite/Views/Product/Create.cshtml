@@ -3,7 +3,7 @@
     ViewBag.Title = "Crear Pintura";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="formStyle">
         <form>
@@ -12,13 +12,13 @@
                 {
                     <span class="error">@ViewBag.MessageDanger</span>
                 }
-            <div id="artist" class="interiorCard ">
-                @Html.LabelFor(model => model.Title) @Html.EditorFor(model => model.Title)
-                @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
-                @Html.LabelFor(model => model.ArtistID)  @Html.DropDownListFor(model => model.ArtistID, new SelectList(Model.Artistas, "Id", "FullName"))
-                @Html.LabelFor(model => model.Image) @Html.TextBoxFor(model => model.Image, new { type = "file" }) 
-                @Html.LabelFor(model => model.Price) @Html.EditorFor(model => model.Price)
-            </div>
+                <div id="artist" class="interiorCard ">
+                    @Html.LabelFor(model => model.Title) @Html.EditorFor(model => model.Title)
+                    @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
+                    @Html.LabelFor(model => model.ArtistID)  @Html.DropDownListFor(model => model.ArtistID, new SelectList(Model.Artistas, "Id", "FullName"))
+                    <label>Imagen</label> @Html.TextBox("file", null, new { type = "file", required = "required" })
+                    @Html.LabelFor(model => model.Price) @Html.EditorFor(model => model.Price)
+                </div>
                 <div class="button-section">
                     <input class="btn btn-lg btn-outline-success" type="submit" name="Sign Up" />
                     @Html.ActionLink("Volver a la lista", "ABMView", new { area = "" }, new { @class = "btn btn-lg btn-outline-primary" })

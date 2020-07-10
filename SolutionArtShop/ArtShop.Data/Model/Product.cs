@@ -20,7 +20,6 @@ namespace ArtShop.Data.Model
         [Required]
         [DisplayName("ID Artista")]
         public int? ArtistID { get; set; }
-        [Required]
         public string Image { get; set; }
         [Required]
         [DisplayName("Precio")]
