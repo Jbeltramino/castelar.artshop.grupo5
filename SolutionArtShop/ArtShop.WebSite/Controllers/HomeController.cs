@@ -12,15 +12,20 @@ namespace SolutionPlatformLPPA5.Models
     {
 
         readonly BaseDataService<Product> db;
+        readonly BaseDataService<Artist> dbArtist;
 
         public HomeController()
         {
             db = new BaseDataService<Product>();
-
+            dbArtist = new BaseDataService<Artist>();
         }
         public ActionResult Index()
         {
             var model = db.Get().Take(6).Reverse();
+            foreach (var item in model)
+            {
+                item.Artista = dbArtist.GetById(Convert.ToInt32(item.ArtistID));
+            }
             return View(model);
         }
     }

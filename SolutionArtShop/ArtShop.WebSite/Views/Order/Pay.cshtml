@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Pagar";
+}
+<div id="pay" class="formStyle">
+    @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
+    {
+        <form>
+            <div id="restDiv">
+                <div class="row">
+                    <div class="container">
+
+
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Dirección</h3>
+                                <label for="fname"> <i class="icon-xs material-icons">person_pin</i> Nombre Completo</label>
+                                <input type="text" id="fname">
+                                <label for="email"> <i class="icon-xs material-icons">email</i> Email</label>
+                                <input type="text" id="email">
+                                <label for="adr"> <i class="icon-xs material-icons">add_location_alt</i> Dirección</label>
+                                <input type="text" id="adr">
+                                <label for="city"> <i class="icon-xs material-icons">location_city</i> Provincia</label>
+                                <input type="text" id="city">
+
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="state">Localidad</label>
+                                        <input type="text" id="state">
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="zip">Cod. Postal</label>
+                                        <input type="text" id="zip">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-50">
+                                <h3>Pago</h3>
+                                <label for="cname">Nombre en la tarjeta</label>
+                                <input type="text" id="cname">
+                                <label for="ccnum">Número de la tarjeta</label>
+                                <input type="number" id="ccnum">
+
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="expmonth">Fecha Expiración </label>
+                                        <input type="date" id="expmonth">
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="cvv">CVV</label>
+                                        <input type="number" id="cvv">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label>Total Items</label>
+                                        <input type="number" name="itemsCount" value="@ViewBag.itemsCount" readonly />
+                                    </div>
+                                    <div class="col-50">
+                                        <label>Total a Pagar</label>
+                                        <input type="text" name="totalPrice" value="@ViewBag.totalPrice" readonly />
+                                    </div>
+                                </div>
+                           </div>
+
+                        </div>
+                        <input type="submit" value="Pagar" class="btn btn-outline-success">
+
+                    </div>
+
+                   
+                </div>
+
+
+
+            </div>
+
+        </form>
+    }
+</div>
+
+

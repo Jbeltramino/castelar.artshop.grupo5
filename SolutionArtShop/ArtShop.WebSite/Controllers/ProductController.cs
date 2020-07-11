@@ -27,6 +27,10 @@ namespace ArtShop.WebSite.Controllers
         public ActionResult Index()
         {
             var model = db.Get().OrderBy(x=>x.Id);
+            foreach (var item in model)
+            {
+                item.Artista = dbArtist.GetById(Convert.ToInt32(item.ArtistID));
+            }
             return View(model);
         }
         public ActionResult itemProduct(int? id)
@@ -38,6 +42,7 @@ namespace ArtShop.WebSite.Controllers
             }
 
             var product = db.GetById(id.Value);
+            product.Artista = dbArtist.GetById(Convert.ToInt32(product.ArtistID));
             if (product == null)
             {
                 Logger.Instance.LogException(new Exception("Product HttpNotFound"), User.Identity.GetUserId());
@@ -66,16 +71,6 @@ namespace ArtShop.WebSite.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            
-
-
-            //List<SelectListItem> listItems = new List<SelectListItem>();
-            //foreach (var item in artistas)
-            //{
-            //    listItems.Add(new SelectListItem() { Text = item.FullName, Value = item.Id.ToString() });
-            //}
-            //ViewBag.artistas = listItems;
-
             Product model = new Product()
             {
                 Artistas = dbArtist.Get()
@@ -93,6 +88,7 @@ namespace ArtShop.WebSite.Controllers
                 {
                     if (file.ContentLength > 0)
                     {
+                        //Insert Pintura
                         string fileName = Path.GetFileName(file.FileName);
                         string path = Path.Combine(Server.MapPath("~/Content/images/Paints"), fileName);
                         file.SaveAs(path);
@@ -100,6 +96,12 @@ namespace ArtShop.WebSite.Controllers
                         this.CheckAuditPattern(pintura, true);
                         var list = db.ValidateModel(pintura);
                         db.Create(pintura);
+
+                        //Actualizar Artista
+                        Artist artista = dbArtist.GetById(Convert.ToInt32(pintura.ArtistID));
+                        artista.TotalProducts += 1;
+                        this.CheckAuditPattern(artista, true);
+                        dbArtist.Update(artista);
                         return RedirectToAction("ABMView");
                     }
 

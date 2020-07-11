@@ -37,7 +37,7 @@ namespace ArtShop.WebSite.Controllers
             if (precioTotal <= 0)
             {
                 ViewBag.MessageDanger = "Debe agregar items al carrito";
-                return Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
+                return RedirectToAction("Index","home",null);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace ArtShop.WebSite.Controllers
                 var list = db.ValidateModel(oOrder);
 
                 if (ModelIsValid(list))
-                    return Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
+                    return RedirectToAction("Index", "home", null);
                 try
                 {
                     db.Create(oOrder);
@@ -76,7 +76,7 @@ namespace ArtShop.WebSite.Controllers
 
                         }
                     }
-                    return Redirect(Request.UrlReferrer.ToString());
+                    return RedirectToAction("Index", "home", null);
                 }
                 catch (Exception ex)
                 {
@@ -85,8 +85,15 @@ namespace ArtShop.WebSite.Controllers
                 }
 
             }
-            return Redirect(Request.UrlReferrer.ToString());
+            return RedirectToAction("Index", "home", null);
 
+        }
+
+        public ActionResult Pay(int itemsCount, string totalPrice)
+        {
+            ViewBag.itemsCount = itemsCount;
+            ViewBag.totalPrice = totalPrice;
+            return View();
         }
 
 

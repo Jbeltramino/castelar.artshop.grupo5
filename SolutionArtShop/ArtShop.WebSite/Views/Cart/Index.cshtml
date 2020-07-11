@@ -3,7 +3,7 @@
     ViewBag.Title = "Carrito de Compras";
 }
     <div class="contentPage">
-        @using (Html.BeginForm("SaveOrder", "Order", FormMethod.Post))
+        @using (Html.BeginForm("Pay", "Order"))
         {
             if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
             {

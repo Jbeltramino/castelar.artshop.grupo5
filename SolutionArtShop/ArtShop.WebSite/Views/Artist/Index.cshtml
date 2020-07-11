@@ -10,8 +10,10 @@
                 {
                     <div class="cardProp colProp-lg-4">
                         <div class="cardContainer">
-                            <h4><b>@Html.DisplayFor(model=>item.FullName)</b> </h4>
+                            <h4><b>@Html.DisplayFor(model => item.FullName)</b> </h4>
                             <p>@Html.DisplayNameFor(model => model.Country): @Html.DisplayFor(model => item.Country)</p>
+                            <p>@Html.DisplayNameFor(model => model.LifeSpan): @Html.DisplayFor(model => item.LifeSpan)</p>
+                            <p>@Html.DisplayNameFor(model => model.TotalProducts): @Html.DisplayFor(model => item.TotalProducts)</p>
                             @*<a href=@Url.Action("itemProduct","Product",@item)><span class="icon-plus">Ver<i class="medium material-icons" style="position: relative;top: 6px;">add_box</i></span></a>*@
                         </div>
                     </div>
