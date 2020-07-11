@@ -54,30 +54,45 @@ header {
 /*Menu*/
 
 #menu {
-    width: 65%;
+    width: 50%;
     float: left;
     font-size: 18px;
 }
+#menu ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 
-    #menu ul {
-        line-height: 109px;
-        width: 100%;
-        float: left;
-    }
 
-        #menu ul li {
-            display: inline-block;
-            list-style-type: none;
-            height: 46px;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
 
-    #menu a {
-        text-decoration: none;
-        color: #4e4e4e;
-        transition: 400ms all;
-    }
+    /*line-height: 109px;*/
+    width: 100%;
+    float: left;
+}
+
+
+
+#menu a {
+    display: block;
+    padding: 2em;
+    padding-top:3em;
+    text-decoration: none;
+    color: #4e4e4e;
+    transition: 400ms all;
+}
+
+#menu ul li ul {
+    display: none;
+    background: #f5f5f5d1;
+}
+
+#menu ul li a:hover + ul, #menu ul li ul:hover {
+    display: block;
+}
+
+
+
 
 
 
@@ -135,6 +150,41 @@ header {
 }
 
 /*Fin Menu*/
+
+.sesion {
+    width: 15%;
+    float:left;
+}
+.sesion ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+
+}
+.sesion .InitialLogin {
+    margin: 2.5em 0 0 0 !important;
+}
+.sesion li {
+
+    text-decoration: none;
+    padding:0.5em 1em;
+}
+.sesion li a {
+
+    text-decoration: none;
+}
+#logoutForm {
+
+    width: 100%;
+}
+#registerLink {
+    position: relative;
+    padding-left: 10px;
+    bottom: 6px;
+}
+
 .clearfix {
     clear: both;
     float: none;
@@ -148,7 +198,7 @@ header {
     width: 5%;
     float: right;
     position: relative;
-    top: 38px;
+    top: 45px;
     /*left: 110px;*/
 }
 
@@ -273,6 +323,9 @@ header {
 
 .icon-tiny {
     font-size: 1rem !important;
+}
+.icon-xs {
+    font-size: 1.5rem !important;
 }
 
 .icon-small {
@@ -477,6 +530,7 @@ header {
     /*background-color: #FFBABA;*/
     padding:10px;
 }
+
 /*RESPONSIVE*/
 @media(max-width:1500px) {
     .center {
@@ -484,16 +538,32 @@ header {
     }
 
     #menu {
-        width: 60%;
+        width: 45%;
+        font-size: 17px;
     }
-
-        #menu ul {
+    #menu a {
+        padding: 0;
+        padding-left: 1em;
+        padding-top: 0.3em;
+    }
+    .sesion{
+        width:20%;
+    }
+    .sesion ul li{
+        padding-top : 0;
+    }
+    .sesion .InitialLogin li{
+        padding: 0.5em 1em;
+    }
+            #menu ul {
             line-height: 120px;
             width: 100%;
             margin: 0px;
             padding: 0px;
         }
-
+        #menu ul li {
+            margin-right:0px;
+        }
     #logoutForm {
         display: inline-block;
         list-style-type: none;
@@ -501,7 +571,8 @@ header {
         margin-left: 15px;
         margin-right: 15px;
         line-height: 121px;
-        float: right;
+        float: left;
+        width:100%;
     }
 
     #content {
@@ -511,9 +582,10 @@ header {
 
 
     #Carrito {
-        width: 10%;
+        width: 4%;
         float: right;
-        top: 45px;
+        top: 44px;
+        left: 0px;
     }
 
         #Carrito img {
@@ -558,10 +630,32 @@ header {
     }
 
     #menu {
-        width: 90%;
+        width: 65%;
         text-align: center;
     }
+    .sesion {
+        width: 31%;
+    }
 
+    .sesion ul li {
+        padding-top: 0;
+    }
+    .sesion .InitialLogin {
+        margin: 0 !important;
+    }
+    .sesion .InitialLogin li{
+        padding: 0 ;
+        padding-left:0.5em;
+        padding-top:1em;
+    }
+
+        #menu a {
+            padding: 0;
+            padding-left: 1em;
+            padding-top: 0.3em;
+        }
+
+   
         #menu ul {
             clear: both;
             float: none;
@@ -582,10 +676,10 @@ header {
     }
 
     #Carrito {
-        width: 5%;
+        width: 4%;
         float: right;
-        top: 17px;
-        /*right: 45px;*/
+        top: 13px;
+        right: 45px;
         left: -50px !important;
     }
 

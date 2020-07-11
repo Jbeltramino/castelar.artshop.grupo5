@@ -1,5 +1,6 @@
 ﻿using ArtShop.Data.Model;
 using ArtShop.Data.Services;
+using Microsoft.AspNet.Identity;
 using OdeToFood.WebSite.Controllers;
 using OdeToFood.WebSite.Services;
 using System;
@@ -32,14 +33,14 @@ namespace ArtShop.WebSite.Controllers
         {
             if (id == null)
             {
-                Logger.Instance.LogException(new Exception("Id Product null "));
+                Logger.Instance.LogException(new Exception("Id Product null "), User.Identity.GetUserId());
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var product = db.GetById(id.Value);
             if (product == null)
             {
-                Logger.Instance.LogException(new Exception("Product HttpNotFound"));
+                Logger.Instance.LogException(new Exception("Product HttpNotFound"), User.Identity.GetUserId());
                 return HttpNotFound();
             }
             return View(product);
@@ -105,7 +106,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (System.Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex,User.Identity.GetUserId());
                     ViewBag.MessageDanger = ex.Message;
                     return View(pintura);
                 }
@@ -120,14 +121,14 @@ namespace ArtShop.WebSite.Controllers
             BaseDataService<Artist> dbArtist = new BaseDataService<Artist>();
             if (id == null)
             {
-                Logger.Instance.LogException(new Exception("Id Paint null "));
+                Logger.Instance.LogException(new Exception("Id Paint null "), User.Identity.GetUserId());
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var pintura = db.GetById(id.Value);
             if (pintura == null)
             {
-                Logger.Instance.LogException(new Exception("Paint HttpNotFound"));
+                Logger.Instance.LogException(new Exception("Paint HttpNotFound"), User.Identity.GetUserId());
                 return HttpNotFound();
             }
             pintura.Artistas = dbArtist.Get();
@@ -171,7 +172,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex, User.Identity.GetUserId());
                     ViewBag.MessageDanger = ex.Message;
                     return View(pintura);
                 }
@@ -191,7 +192,7 @@ namespace ArtShop.WebSite.Controllers
             var pintura = db.GetById(id.Value);
             if (pintura == null)
             {
-                Logger.Instance.LogException(new Exception("Paint HttpNotFound"));
+                Logger.Instance.LogException(new Exception("Paint HttpNotFound"), User.Identity.GetUserId());
                 return HttpNotFound();
             }
             try
@@ -201,7 +202,7 @@ namespace ArtShop.WebSite.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Instance.LogException(ex);
+                Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 ViewBag.MessageDanger = ex.Message;
                 return RedirectToAction("ABMView");
             }

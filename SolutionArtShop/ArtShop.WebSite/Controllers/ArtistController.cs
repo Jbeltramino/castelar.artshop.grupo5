@@ -1,5 +1,6 @@
 ﻿using ArtShop.Data.Model;
 using ArtShop.Data.Services;
+using Microsoft.AspNet.Identity;
 using OdeToFood.WebSite.Controllers;
 using OdeToFood.WebSite.Services;
 using System;
@@ -51,7 +52,7 @@ namespace ArtShop.WebSite.Controllers
             }
             catch (System.Exception ex)
             {
-                Logger.Instance.LogException(ex);
+                Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 ViewBag.MessageDanger = ex.Message;
                 return View(artist);
             }
@@ -62,14 +63,14 @@ namespace ArtShop.WebSite.Controllers
         {
             if (id == null)
             {
-                Logger.Instance.LogException(new Exception("Id Artist null "));
+                Logger.Instance.LogException(new Exception("Id Artist null "), User.Identity.GetUserId());
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var artist = db.GetById(id.Value);
             if (artist == null)
             {
-                Logger.Instance.LogException(new Exception("Artist HttpNotFound"));
+                Logger.Instance.LogException(new Exception("Artist HttpNotFound"), User.Identity.GetUserId());
                 return HttpNotFound();
             }
             return View(artist);
@@ -89,7 +90,7 @@ namespace ArtShop.WebSite.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Instance.LogException(ex);
+                Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 ViewBag.MessageDanger = ex.Message;
                 return View(artist);
             }
@@ -107,7 +108,7 @@ namespace ArtShop.WebSite.Controllers
             var artist = db.GetById(id.Value);
             if (artist == null)
             {
-                Logger.Instance.LogException(new Exception("Artist HttpNotFound"));
+                Logger.Instance.LogException(new Exception("Artist HttpNotFound"), User.Identity.GetUserId());
                 return HttpNotFound();
             }
             try
@@ -117,7 +118,7 @@ namespace ArtShop.WebSite.Controllers
             }
             catch (Exception ex)
             {
-                Logger.Instance.LogException(ex);
+                Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 ViewBag.MessageDanger = ex.Message;
                 return RedirectToAction("ABMView");
             }

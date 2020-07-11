@@ -1,5 +1,6 @@
 ﻿using ArtShop.Data.Model;
 using ArtShop.Data.Services;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using OdeToFood.WebSite.Controllers;
 using OdeToFood.WebSite.Services;
@@ -46,7 +47,7 @@ namespace ArtShop.WebSite.Controllers
             Product oPaint = dbProduct.GetById(Convert.ToInt32(Id));
             if (Id == null)
             {
-                Logger.Instance.LogException(new Exception("Id Cart null "));
+                Logger.Instance.LogException(new Exception("Id Cart null "), User.Identity.GetUserId());
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
@@ -89,7 +90,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex, User.Identity.GetUserId());
 
                 }
 
@@ -118,7 +119,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 }
                     
                
@@ -176,7 +177,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex, User.Identity.GetUserId());
                 }
 
             }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ArtShop.Data.Model.Error>
+@{
+    ViewBag.Title = "Reporte Errores";
+}
+
+<div class="formStyle">
+    @if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
+    {
+        <span class="error">@ViewBag.MessageDanger</span>
+    }
+    <form>
+        <div id="restDiv">
+            <div id="artist" class="interiorCard">
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+                            <th>@Html.DisplayNameFor(model => model.ErrorDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.Exception)</th>
+                            <th>@Html.DisplayNameFor(model => model.Message)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(model => item.UserId)</td>
+                                <td>@Html.DisplayFor(model => item.ErrorDate) </td>
+                                <td>@Html.DisplayFor(model => item.Exception)</td>
+                                <td>@Html.DisplayFor(model => item.Message)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</div>

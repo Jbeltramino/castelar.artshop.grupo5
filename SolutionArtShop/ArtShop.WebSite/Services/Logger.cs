@@ -13,15 +13,16 @@ namespace OdeToFood.WebSite.Services
         {
         }
         public readonly static Logger Instance = new Logger();
-        public void LogException(Exception exception)
+        public void LogException(Exception exception,string userId)
         {
             // try-catch because database itself could be down or Request context is unknown.
 
             try
             {
-                string userId = null;
-                try { userId = HttpContext.Current.User.Identity.Name; }
-                catch {/* no hacer nada, o enviar un correo electrónico al webmaster */ }
+
+                //string userId = null;
+                //try { userId =   HttpContext.Current.User.Identity.Name; }
+                //catch {/* no hacer nada, o enviar un correo electrónico al webmaster */ }
 
                 // ** Prototype pattern. El objeto Error tiene sus valores predeterminados inicializados
                 var error = new Error()

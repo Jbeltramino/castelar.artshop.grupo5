@@ -25,7 +25,7 @@ namespace ArtShop.WebSite
             var exception = HttpContext.Current.Server.GetLastError();
 
             if (exception != null)
-                Logger.Instance.LogException(exception);
+                Logger.Instance.LogException(exception,"0");
         }
     }
 }

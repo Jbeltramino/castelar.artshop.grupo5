@@ -32,20 +32,35 @@
                     <li>
                         @Html.ActionLink("Pinturas", "Index", "Product", new { area = "" }, new { @class = "nav-item" })
                     </li>
+                    <li>
+                        @Html.ActionLink("Artistas", "Index", "Artist", new { area = "" }, new { @class = "nav-item" })
+                    </li>
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
                         <li>
-                            @Html.ActionLink("ABM Pinturas", "ABMView", "Product", new { area = "" }, new { @class = "nav-item" })
+                            @Html.ActionLink("ABM", "ABMView", "Product", new { area = "" }, new { @class = "nav-item" })
+                            <ul>
+                                <li>
+                                    @Html.ActionLink("ABM Pinturas", "ABMView", "Product", new { area = "" }, new { @class = "nav-item" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("ABM Artistas", "ABMView", "Artist", new { area = "" }, new { @class = "nav-item" })
+                                </li>
+                            </ul>
                         </li>
+
                         <li>
-                            @Html.ActionLink("ABM Artistas", "ABMView", "Artist", new { area = "" }, new { @class = "nav-item" })
+                            @Html.ActionLink("Reporte Errores", "Index", "Error", new { area = "" }, new { @class = "nav-item" })
                         </li>
                     }
-                        @Html.Partial("_LoginPartial")
 
-                    </ul>
+
+                </ul>
                 <span class="nav-indicator"></span>
             </nav>
+            <div class="sesion">
+                @Html.Partial("_LoginPartial")
+            </div>
             <div id="Carrito" class="icon-container">
                 <a id="cart" href="@Url.Action("Index","Cart")" data-toggle="popover-cart" data-placement="bottom"><i class="material-icons icon-small">add_shopping_cart</i></a>
                 <span id="cartValue" class="spanCart"><strong id="cartPrice"></strong></span>
@@ -65,22 +80,22 @@
         </div>
     </header>
 
-   
 
+    <div class="clearfix"></div>
     <div id="slider" class="slider-big">
 
-      
+
         <h1>
             @ViewBag.Title
         </h1>
 
-       
+
 
 
     </div>
     <div class="clearfix"></div>
 
-    
+
 
     <div class="center">
 
@@ -104,7 +119,7 @@
             dataType: 'json',
                 success: function (result) {
                     $("#cartPrice").text("$" + result.response);
-                
+
             }
         });
 
@@ -128,7 +143,7 @@
 
         });
 
-        
+
 
 
     </script>

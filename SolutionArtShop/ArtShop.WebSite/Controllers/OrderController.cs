@@ -79,7 +79,7 @@ namespace ArtShop.WebSite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Logger.Instance.LogException(ex);
+                    Logger.Instance.LogException(ex, User.Identity.GetUserId());
 
                 }
 
