@@ -223,5 +223,10 @@ namespace ArtShop.WebSite.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        public ActionResult Pay()
+        {
+            return View();
+        }
+
     }
 }

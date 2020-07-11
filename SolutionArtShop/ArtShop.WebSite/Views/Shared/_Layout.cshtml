@@ -48,10 +48,18 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li>
-                            @Html.ActionLink("Reporte Errores", "Index", "Error", new { area = "" }, new { @class = "nav-item" })
+                            @Html.ActionLink("Reportes", "Index", "Error", new { area = "" }, new { @class = "nav-item" })
+                            <ul>
+                                <li>
+                                    @Html.ActionLink("Reporte Errores", "Index", "Error", new { area = "" }, new { @class = "nav-item" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Reporte Órdenes", "Index", "Order", new { area = "" }, new { @class = "nav-item" })
+                                </li>
+                            </ul>
                         </li>
+                   
                     }
 
 
@@ -70,10 +78,10 @@
                 <span id="cart_details"></span>
                 <div align="right">
                     <a href="@Url.Action("Index","Cart")" class="btn btn-primary" id="check_out_cart">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Check out
+                        <i class="material-icons icon-tiny">add_shopping_cart</i> Check out
                     </a>
                     <a href="@Url.Action("deleteCartItems","Cart")" class="btn btn-default" id="clear_cart">
-                        <span class="glyphicon glyphicon-trash"></span> Clear
+                        <i class="icon-tiny material-icons">restore_from_trash</i> Clear
                     </a>
                 </div>
             </div>

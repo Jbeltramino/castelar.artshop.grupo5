@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ArtShop.Data.Model.Order>
+@{
+    ViewBag.Title = "Órdenes";
+}
+<div class="formStyle">
+    @if (ViewBag.MessageDanger != "" || ViewBag.MessageDanger != null)
+    {
+        <span class="error">@ViewBag.MessageDanger</span>
+    }
+    <form>
+        <div id="restDiv">
+            <div id="artist" class="interiorCard">
+                <table class="table cart-items">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Id)</th>
+                            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+                            <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.ItemCount)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@Html.DisplayFor(model => item.Id)</td>
+                            <td>@Html.DisplayFor(model => item.UserId) </td>
+                            <td>@Html.DisplayFor(model => item.OrderDate)</td>
+                            <td>@Html.DisplayFor(model => item.ItemCount)</td>
+                            <td>@Html.DisplayFor(model => item.TotalPrice)</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -27,7 +27,8 @@ namespace ArtShop.WebSite.Controllers
         }
             public ActionResult Index()
         {
-            return View();
+            var model = db.Get().OrderBy(x=>x.Id).Reverse();
+            return View(model);
         }
         [HttpPost]
         public ActionResult SaveOrder(int itemsCount, string totalPrice)
