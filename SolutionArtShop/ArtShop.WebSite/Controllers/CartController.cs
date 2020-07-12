@@ -27,20 +27,25 @@ namespace ArtShop.WebSite.Controllers
             dbProduct = new BaseDataService<Product>();
         }
         // GET: Cart
+        [Authorize]
         public ActionResult Index()
         {
             if (Request.Cookies["cookieCart"] != null)
             {
                 HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
 
-                List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
+                List<CartItem> listaItems = dbItem.Get().Where(x=>x.CartId==Convert.ToInt32(cookie.Value)).ToList();
+
+                foreach(var item in listaItems)
+                {
+                    item._Product = dbProduct.GetById(item.ProductId);
+                }
 
                 return View(listaItems);
             }
             return RedirectToAction("index", "Home");
 
         }
-        [Authorize]
         [HttpPost]
         public ActionResult AddToCart(int? Id)
         {
@@ -53,10 +58,9 @@ namespace ArtShop.WebSite.Controllers
 
             if (Request.Cookies.Get("cookieCart")==null)
             {
-                
+                HttpCookie cookie = new HttpCookie("cookieCart");
                 Cart oCart = new Cart();
 
-                List<CartItem> items = new List<CartItem>();
                 CartItem oCartItem =new CartItem()
                 {
                     ProductId = Convert.ToInt32(Id),
@@ -65,15 +69,13 @@ namespace ArtShop.WebSite.Controllers
                     _Product = oPaint
                 };
                 
-
                 //Seteo datos de cart
-                oCart.Cookie ="XX"; //ARREGLAR ESTO
                 oCart.ItemCount = 1;
                 var format = "dd/MM/yyyy HH:mm:ss";
                 var hoy = DateTime.Now.ToString(format);
                 var dateTime = DateTime.ParseExact(hoy, format, CultureInfo.InvariantCulture);
                 oCart.CartDate = dateTime;
-
+                oCart.Cookie = "";
                
                 
                     
@@ -86,6 +88,17 @@ namespace ArtShop.WebSite.Controllers
                 {
                     //Obtengo el id del carritoCreado
                     Cart oCartSave = db.Create(oCart);
+                    
+                    cookie.Value = oCartSave.Id.ToString();
+                    oCartSave.Cookie = cookie.Value;
+
+                    //Actualizo el carrito con la cookie
+                    db.Update(oCartSave);
+
+                    //Genero la cookie
+                    Response.Cookies.Add(cookie);
+
+                    //Guardo el id del carrito en el item
                     oCartItem.CartId = oCartSave.Id;
                 }
                 catch (Exception ex)
@@ -107,15 +120,9 @@ namespace ArtShop.WebSite.Controllers
                 try
                 {
                     //Guardo el item
-                    CartItem ItemCartSave= dbItem.Create(oCartItem);
-
-
-                     items.Add(ItemCartSave);
-                    //Guardo la lista en json en la cookie
-                    HttpCookie cookie = new HttpCookie("cookieCart");
-                    string jsonItems = JsonConvert.SerializeObject(items);
-                    cookie.Value = jsonItems;
-                    this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+                    dbItem.Create(oCartItem);
+                    
+                    
                 }
                 catch (Exception ex)
                 {
@@ -129,51 +136,35 @@ namespace ArtShop.WebSite.Controllers
             else
             {
                 HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
-                List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
-
-                //Saco el id del carrito del primer item
-                int idCart = listaItems[0].CartId;
-
-
+                List<CartItem> listaItems =dbItem.Get().Where(x => x.CartId == Convert.ToInt32(cookie.Value)).ToList();
+                 
                 CartItem oCartItem = new CartItem()
                 {
                     ProductId = Convert.ToInt32(Id),
                     Price = oPaint.Price,
                     Quantity = 1,
-                    CartId=idCart,
+                    CartId= Convert.ToInt32(cookie.Value),
                     _Product = oPaint
                 };
                 
-
-                //DEBERIA ACTUALIZAR LA COOKIE DEL CART SI NO SE GUARDA EL NOMBRE
-
-
-
                 this.CheckAuditPattern(oCartItem, true);
                 var list2 = dbItem.ValidateModel(oCartItem);
 
 
-              
+                //Actualizo cantidad de items del carrito 
+                Cart oCart = db.GetById(Convert.ToInt32(cookie.Value));
+                oCart.ItemCount += 1;
+
+                this.CheckAuditPattern(oCart, true);
+                var list3 = db.ValidateModel(oCart);
 
                 if (ModelIsValid(list2))
                     return RedirectToAction("itemProduct", "Product", new { Id });
                 try
                 {
                     //Guardo el item
-                    CartItem oCartItemSave = dbItem.Create(oCartItem);
-
-                    listaItems.Add(oCartItemSave);
-                    string jsonItems = JsonConvert.SerializeObject(listaItems);
-                    cookie.Value = jsonItems;
-                    this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-
-                    var precio = 0.0;
-                    foreach(var item in listaItems)
-                    {
-                        precio = precio + item.Price;
-                        
-                    }
-
+                    dbItem.Create(oCartItem);
+                    db.Update(oCart);
                 }
                 catch (Exception ex)
                 {
@@ -185,13 +176,45 @@ namespace ArtShop.WebSite.Controllers
             return RedirectToAction("itemProduct", "Product", new { Id });
         }
 
+        public ActionResult DeleteItem(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var cartItem = dbItem.GetById(id.Value);
+            if (cartItem == null)
+            {
+                Logger.Instance.LogException(new Exception("CartItem HttpNotFound"), User.Identity.GetUserId());
+                return HttpNotFound();
+            }
+            try
+            {
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
+                Cart oCart = db.GetById(Convert.ToInt32(cookie.Value));
+                oCart.ItemCount -= 1;
+
+                dbItem.Delete(cartItem);
+                db.Update(oCart);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogException(ex, User.Identity.GetUserId());
+                ViewBag.MessageDanger = ex.Message;
+                return RedirectToAction("Index");
+            }
+
+        }
+
         public ActionResult getPrice()
         {
             HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
             var precio = 0.0;
             if (cookie != null)
             {
-                List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
+                List<CartItem> listaItems = dbItem.Get().Where(x=>x.CartId==Convert.ToInt32(cookie.Value)).ToList();
 
                 foreach (var item in listaItems)
                 {
@@ -212,21 +235,47 @@ namespace ArtShop.WebSite.Controllers
 
                 HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
 
-                List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
+                List<CartItem> listaItems = dbItem.Get().Where(x => x.CartId == Convert.ToInt32(cookie.Value)).ToList();
 
                 foreach (var item in listaItems)
                 {
                     dbItem.Delete(item);
 
                 }
+                Cart oCart = db.GetById(Convert.ToInt32(cookie.Value));
+                db.Delete(oCart);
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Pay()
+        public ActionResult deleteCartItemsAfterSave()
+        {
+
+            if (Request.Cookies["cookieCart"] != null)
+            {
+
+                Response.Cookies["cookieCart"].Expires = DateTime.Now.AddDays(-1);
+
+                HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
+
+                List<CartItem> listaItems = dbItem.Get().Where(x => x.CartId == Convert.ToInt32(cookie.Value)).ToList();
+
+                foreach (var item in listaItems)
+                {
+                    dbItem.Delete(item);
+
+                }
+                Cart oCart = db.GetById(Convert.ToInt32(cookie.Value));
+                db.Delete(oCart);
+            }
+            return RedirectToAction("Success");
+        }
+
+        public ActionResult Success()
         {
             return View();
         }
+        
 
     }
 }

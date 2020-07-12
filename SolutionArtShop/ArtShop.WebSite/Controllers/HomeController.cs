@@ -21,7 +21,7 @@ namespace SolutionPlatformLPPA5.Models
         }
         public ActionResult Index()
         {
-            var model = db.Get().Take(6).Reverse();
+            var model = db.Get().OrderBy(x => x.Id).Take(6).Reverse();
             foreach (var item in model)
             {
                 item.Artista = dbArtist.GetById(Convert.ToInt32(item.ArtistID));

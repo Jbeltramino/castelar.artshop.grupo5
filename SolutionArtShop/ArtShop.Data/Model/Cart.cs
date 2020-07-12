@@ -8,7 +8,6 @@ namespace ArtShop.Data.Model
     public class Cart : IdentityBase
     {
 
-        [Required]
         public string Cookie { get; set; }
         [Required]
         public DateTime CartDate { get; set; }

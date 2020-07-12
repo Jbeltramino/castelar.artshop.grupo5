@@ -19,11 +19,15 @@ namespace ArtShop.WebSite.Controllers
 
         readonly BaseDataService<Order> db;
         readonly BaseDataService<CartItem> dbItem;
+        readonly BaseDataService<OrderDetail> dbDetail;
+        readonly BaseDataService<Product> dbProduct;
 
         public OrderController()
         {
             db = new BaseDataService<Order>();
             dbItem = new BaseDataService<CartItem>();
+            dbDetail = new BaseDataService<OrderDetail>();
+            dbProduct = new BaseDataService<Product>();
         }
             public ActionResult Index()
         {
@@ -56,27 +60,44 @@ namespace ArtShop.WebSite.Controllers
                     return RedirectToAction("Index", "home", null);
                 try
                 {
-                    db.Create(oOrder);
-                    //return RedirectToAction("deleteCartItems", "Cart");
+                    Order oOrderSave= db.Create(oOrder);
 
-                    //Eliminamos los items 
+                    HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
 
-                    if (Request.Cookies["cookieCart"] != null)
+                    List<CartItem> listaItems = dbItem.Get().Where(x => x.CartId == Convert.ToInt32(cookie.Value)).ToList();
+
+                    foreach(var item in listaItems)
                     {
 
-                        Response.Cookies["cookieCart"].Expires = DateTime.Now.AddDays(-1);
+                        //Actualizacion cantidad vendida de producto
+                        Product oProducto = dbProduct.GetById(item.ProductId);
+                        oProducto.QuantitySold += 1;
+                        this.CheckAuditPattern(oProducto, true);
+                        var list3 = dbProduct.ValidateModel(oProducto);
 
-                        HttpCookie cookie = HttpContext.Request.Cookies.Get("cookieCart");
+                        if (ModelIsValid(list3))
+                            return RedirectToAction("Index", "home", null);
 
-                        List<CartItem> listaItems = JsonConvert.DeserializeObject<List<CartItem>>(cookie.Value);
-
-                        foreach (var item in listaItems)
+                        dbProduct.Update(oProducto);
+                        //Alta Detalles de orden
+                        OrderDetail oDetail = new OrderDetail()
                         {
-                            dbItem.Delete(item);
+                            OrderId = oOrderSave.Id,
+                            ProductId=item.ProductId,
+                            Price = item.Price,
+                            Quantity = item.Quantity
+                        };
+                        this.CheckAuditPattern(oDetail, true);
+                        var list2 = dbDetail.ValidateModel(oDetail);
 
-                        }
+                        if (ModelIsValid(list2))
+                            return RedirectToAction("Index", "home", null);
+
+                        dbDetail.Create(oDetail);
                     }
-                    return RedirectToAction("Index", "home", null);
+
+
+
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +106,7 @@ namespace ArtShop.WebSite.Controllers
                 }
 
             }
-            return RedirectToAction("Index", "home", null);
+            return RedirectToAction("deleteCartItemsAfterSave", "Cart");
 
         }
 
@@ -95,7 +116,7 @@ namespace ArtShop.WebSite.Controllers
             ViewBag.totalPrice = totalPrice;
             return View();
         }
-
+        
 
     }
 }

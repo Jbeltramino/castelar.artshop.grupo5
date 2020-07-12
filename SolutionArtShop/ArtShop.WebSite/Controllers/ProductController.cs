@@ -26,7 +26,7 @@ namespace ArtShop.WebSite.Controllers
         }
         public ActionResult Index()
         {
-            var model = db.Get().OrderBy(x=>x.Id);
+            var model = db.Get().OrderBy(x=>x.Id).Reverse();
             foreach (var item in model)
             {
                 item.Artista = dbArtist.GetById(Convert.ToInt32(item.ArtistID));

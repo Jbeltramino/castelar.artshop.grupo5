@@ -394,12 +394,7 @@ namespace ArtShop.WebSite.Controllers
 
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            //Redirecciono para eliminar los items del carrito
-
-         
-           
-
-            return RedirectToAction("deleteCartItems", "Cart");
+            return RedirectToAction("Index", "Home");
         }
 
         //
