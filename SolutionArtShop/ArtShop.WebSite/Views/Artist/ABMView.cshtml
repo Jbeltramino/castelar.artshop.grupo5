@@ -34,7 +34,13 @@
                                     <td>@Html.DisplayFor(model => item.LifeSpan)</td>
                                     <td>@Html.DisplayFor(model => item.Description)</td>
                                     <td>@Html.DisplayFor(model => item.TotalProducts)</td>
-                                    <th> <a href="@Url.Action("Edit", "Artist", new {id=item.Id })"><i class="material-icons icon-small">create</i></a><a href="@Url.Action("Delete", "Artist", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a></th>
+                                    <th>
+                                        <a href="@Url.Action("Edit", "Artist", new {id=item.Id })"><i class="material-icons icon-small">create</i></a>
+                                        @if (item.TotalProducts == 0)
+                                        {
+                                            <a href="@Url.Action("Delete", "Artist", new { id = item.Id })"><i class="material-icons icon-small">delete_outline</i></a>
+                                        }
+                                        </th>
                                 </tr>
                             }
                         </tbody>

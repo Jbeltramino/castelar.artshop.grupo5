@@ -34,7 +34,13 @@
                                     <td>@Html.DisplayFor(model => item.Artista.FullName)</td>
                                     <td>@Html.DisplayFor(model => item.Price)</td>
                                     <td>@Html.DisplayFor(model => item.QuantitySold)</td>
-                                    <th> <a href="@Url.Action("Edit", "Product", new {id=item.Id })"><i class="material-icons icon-small">create</i></a><a href="@Url.Action("Delete", "Product", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a></th>
+                                    <th>
+                                        <a href="@Url.Action("Edit", "Product", new {id=item.Id })"><i class="material-icons icon-small">create</i></a>
+                                        @if (item.QuantitySold==0)
+                                        {
+                                            <a href="@Url.Action("Delete", "Product", new {id=item.Id })"><i class="material-icons icon-small">delete_outline</i></a>
+                                        }
+                                    </th>
                                 </tr>
                             }
                         </tbody>

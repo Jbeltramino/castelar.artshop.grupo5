@@ -199,8 +199,18 @@ namespace ArtShop.WebSite.Controllers
             }
             try
             {
-                db.Delete(pintura);
-                return RedirectToAction("ABMView");
+                if (pintura.QuantitySold > 0)
+                {
+                    ViewBag.MessageDanger = "No se puede eliminar la pintura porque tiene ventas realizadas";
+                    return RedirectToAction("ABMView");
+                }
+                else
+                {
+                    db.Delete(pintura);
+                    return RedirectToAction("ABMView");
+                }
+                
+               
             }
             catch (Exception ex)
             {
