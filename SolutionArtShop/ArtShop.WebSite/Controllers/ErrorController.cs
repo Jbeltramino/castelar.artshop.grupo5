@@ -19,7 +19,7 @@ namespace ArtShop.WebSite.Controllers
         // GET: Error
         public ActionResult Index()
         {
-            var model = db.Get();
+            var model = db.Get().OrderBy(x=>x.ErrorDate).Reverse();
             return View(model);
         }
     }
