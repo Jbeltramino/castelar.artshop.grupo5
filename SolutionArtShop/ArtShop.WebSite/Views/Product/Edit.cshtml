@@ -18,6 +18,7 @@
                 @Html.HiddenFor(model => model.CreatedOn)
                 @Html.HiddenFor(model => model.CreatedBy)
                 @Html.HiddenFor(model => model.Image)
+                @Html.HiddenFor(model => model.QuantitySold)
                 @Html.LabelFor(model => model.Title) @Html.EditorFor(model => model.Title)
                 @Html.LabelFor(model => model.Description) @Html.EditorFor(model => model.Description)
                 @Html.LabelFor(model => model.ArtistID)  @Html.DropDownListFor(model => model.ArtistID, new SelectList(Model.Artistas, "Id", "FullName", Model.ArtistID))
